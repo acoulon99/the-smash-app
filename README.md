@@ -1,4 +1,4 @@
-# the-smash-app
+# The Smash App
 This is an open source mobile application for the Super Smash Brothers community.
 
 # Planned Features
