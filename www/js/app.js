@@ -4,7 +4,13 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('SmashApp', ['ionic',
+  'SmashApp.Core.controllers',
+  'SmashApp.User.controllers',
+  'SmashApp.Messages.controllers',
+  'SmashApp.Map.controllers',
+  'SmashApp.Tournaments.controllers',
+  'SmashApp.Events.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,46 +32,81 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: 'core/view.menu.html',
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: "/search",
+  .state('app.home', {
+    url: "/home",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: 'core/view.home.html',
+        controller: 'HomeCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.profile', {
+    url: "/profile",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: 'user/view.profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  
+  .state('app.messages', {
+    url: "/messages",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: 'messages/view.messages.html',
+        controller: 'MessagesCtrl'
+      }
+    }
+  })
+
+  .state('app.map', {
+    url: "/map",
+    views: {
+      'menuContent': {
+        templateUrl: 'map/view.map.html',
+        controller: 'MapCtrl'
+      }
+    }
+  })
+
+  .state('app.preferences', {
+    url: "/preferences",
+    views: {
+      'menuContent': {
+        templateUrl: 'core/view.preferences.html',
+        controller: 'PreferencesCtrl'
+      }
+    }
+  })
+
+  .state('app.tournaments', {
+    url: "/tournaments",
+    views: {
+      'menuContent': {
+        templateUrl: 'tournaments/view.tournaments.html',
+        controller: 'TournamentsCtrl'
+      }
+    }
+  })
+
+  .state('app.events', {
+    url: "/events",
+    views: {
+      'menuContent': {
+        templateUrl: 'events/view.events.html',
+        controller: 'EventsCtrl'
       }
     }
   });
+
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });
