@@ -29,6 +29,10 @@ p{
 	background: #080808;
 }
 
+#header-main .bar-header .buttons .ion-navicon{
+	color: #DD0000;
+}
+
 #header-main .logo-full{
 	position: absolute;
 	right: 10px;
