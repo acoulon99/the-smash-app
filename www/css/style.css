@@ -102,3 +102,17 @@ p{
 	background: black;
 	color: white;
 }
+
+/*
+	MAP
+*/
+
+#map-screen .map-content .scroll{
+	height: 100%;
+	width: 100%;
+}
+
+#map-screen #map{
+	width: 100%;
+	height: 100%;
+}
