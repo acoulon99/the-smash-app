@@ -10,12 +10,17 @@
 h1, h2, h3, h4, h5 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
+	color: white;
 }
 
 p{
 	font-family: Tahoma, Geneva, sans-serif;
+	color: white;
 }
 
+.dark-background{
+	background: #181818;
+}
 
 /*
 	HEADER
@@ -65,4 +70,31 @@ p{
 */
 #tabs-main{
 	background: #383838;
+}
+
+
+
+/*
+	SIDE MENU
+*/
+
+#side-menu .scroll-content{
+	background: black;
+}
+
+#side-menu .bar-header{
+	background: #080808;
+}
+
+#side-menu .bar-header .title{
+	color: white;
+}
+
+#side-menu .list .item{
+	border: 1px solid;
+}
+
+#side-menu .list .item .item-content{
+	background: black;
+	color: white;
 }
