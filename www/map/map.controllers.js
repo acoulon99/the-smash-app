@@ -1,6 +1,6 @@
 angular.module('SmashApp.Map.controllers', [])
 
-  .controller('MapCtrl', ['$scope','$ionicLoading', function($scope, $ionicLoading) {
+  .controller('MapCtrl', ['$scope','$ionicLoading','$cordovaGeolocation', function($scope, $ionicLoading, $cordovaGeolocation) {
     $scope.greeting = 'hey';
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
 
@@ -20,6 +20,36 @@ angular.module('SmashApp.Map.controllers', [])
 	      content: 'Getting current location... Please Wait',
 	      showBackdrop: false
 	    });
+
+	    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+	    $cordovaGeolocation
+	    	.getCurrentPosition(posOptions)
+	    	.then(function (pos) {
+
+			  var myPos = new google.maps.Marker({
+		        position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+		        map: map,
+		        title: 'MyPos'
+		      });
+
+			  google.maps.event.addListener(myPos, 'click', function() {
+		        var infowindow = new google.maps.InfoWindow({
+		      	  content: 'Me'
+		        });
+
+		        infowindow.open(map, myPos);
+		      });
+
+
+		      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+	          $ionicLoading.hide();
+
+		    }, function(err) {
+		      $ionicLoading.hide();
+		      alert('Unable to get location: ' + err.message);
+		    });
+
+	    /*
 	    navigator.geolocation.getCurrentPosition(function(pos) {
 
 		  var myPos = new google.maps.Marker({
@@ -43,7 +73,9 @@ angular.module('SmashApp.Map.controllers', [])
 	      alert('Unable to get location: ' + error.message);
 	    });
 
-	  };
+		*/
+
+	};
 
 
   }]);
