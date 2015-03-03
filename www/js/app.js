@@ -10,7 +10,8 @@ angular.module('SmashApp', ['ionic',
   'SmashApp.Messages.controllers',
   'SmashApp.Map.controllers',
   'SmashApp.Tournaments.controllers',
-  'SmashApp.Events.controllers'])
+  'SmashApp.Events.controllers',
+  'SmashApp.Login.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -34,6 +35,16 @@ angular.module('SmashApp', ['ionic',
     abstract: true,
     templateUrl: 'core/view.menu.html',
     controller: 'AppCtrl'
+  })
+
+  .state('app.login', {
+    url: "/login",
+    views: {
+      'menuContent': {
+        templateUrl: 'login/view.login.html',
+        controller: 'LoginCtrl'
+      }
+    }
   })
 
   .state('app.home', {
@@ -108,5 +119,5 @@ angular.module('SmashApp', ['ionic',
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/login');
 });
