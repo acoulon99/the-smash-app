@@ -38,10 +38,14 @@ angular.module('SmashApp.Core.controllers', [])
 
 
     $scope.logout = function(){
+      //update user object
+      $scope.user = $localstorage.getObject('user');
+
+      // extract loginToken
       var logoutData = {loginToken: $scope.user.loginToken};
 
+      // send logout request
       console.log('Sending Logout Request', $scope.user);
-
       RegAuthServ.logout(logoutData).success(function(res){
         console.log('Successful logout', res);
         $localstorage.setObject('user', {});
@@ -81,8 +85,8 @@ angular.module('SmashApp.Core.controllers', [])
 
   .controller('HomeCtrl', ['$scope', '$localstorage', function($scope, $localstorage){
     $scope.greeting = 'hey';
-
     $scope.user = $localstorage.getObject('user');
+
 
   }])
 
