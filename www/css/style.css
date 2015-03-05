@@ -111,7 +111,7 @@ p{
 }
 
 #welcome-screen .welcome-content .logo{
-	width: 200px;
+	width: 220px;
 	/*-webkit-filter: drop-shadow(4px 3px 0px #484848); */
 }
 
@@ -132,7 +132,6 @@ p{
 }
 
 #welcome-screen .button-welcome.activated{
-	font-size: 18px !important;
 	border: 2px solid #DD0000;
 	color: #DD0000;
 }

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('SmashApp', ['ionic', 'ngCordova',
-  'SmashApp.Core.controllers',
+  'SmashApp.Core.controllers', 'SmashApp.Core.services',
   'SmashApp.User.controllers',
   'SmashApp.Messages.controllers',
   'SmashApp.Map.controllers',

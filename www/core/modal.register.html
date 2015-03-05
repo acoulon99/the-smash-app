@@ -1,0 +1,41 @@
+<div id="register-modal" class="modal">
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Register</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeRegister()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="register-content">
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="registerData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="registerData.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="registerData.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Tag</span>
+          <input type="text" ng-model="registerData.tag">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Main(s)</span>
+          <input type="text" ng-model="registerData.mains">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Smash Game(s)</span>
+          <input type="text" ng-model="registerData.games">
+        </label>
+        <label class="item">
+          <button class="button button-block button-stable" ng-click="register()">Register</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</div>
