@@ -18,6 +18,14 @@ p{
 	color: white;
 }
 
+.text-black{
+	color: black;
+}
+
+.text-link{
+	color: blue;
+}
+
 .dark-background{
 	background: #181818;
 }
@@ -40,6 +48,43 @@ p{
 	height: 30px;
 	z-index: 99;
 }
+
+
+
+/*
+	TABS
+*/
+#tabs-main{
+	background: #383838;
+}
+
+
+
+/*
+	SIDE MENU
+*/
+
+#side-menu .scroll-content{
+	background: black;
+}
+
+#side-menu .bar-header{
+	background: #080808;
+}
+
+#side-menu .bar-header .title{
+	color: white;
+}
+
+#side-menu .list .item{
+	border: 1px solid;
+}
+
+#side-menu .list .item .item-content{
+	background: black;
+	color: white;
+}
+
 
 /*
 	WELCOME SCREEN
@@ -76,38 +121,24 @@ p{
 }
 
 /*
-	TABS
+	LOGIN MODAL
 */
-#tabs-main{
-	background: #383838;
+#login-modal a{
+	color: blue;
+}
+
+#login-modal .forgot-container{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.popup p{
+	color: black;
 }
 
 
 
-/*
-	SIDE MENU
-*/
 
-#side-menu .scroll-content{
-	background: black;
-}
-
-#side-menu .bar-header{
-	background: #080808;
-}
-
-#side-menu .bar-header .title{
-	color: white;
-}
-
-#side-menu .list .item{
-	border: 1px solid;
-}
-
-#side-menu .list .item .item-content{
-	background: black;
-	color: white;
-}
 
 /*
 	MAP

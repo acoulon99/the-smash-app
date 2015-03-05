@@ -1,0 +1,28 @@
+<div id="login-modal" class="modal">
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="login-content">
+    <form>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="user.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-stable" ng-click="login()">Log in</button>
+        </label>
+      </div>
+    </form>
+    <div class="forgot-container">
+      <a ng-click="forgotComingSoon()"><p class="text-link">Forgot Password?<p></a>
+    </div>
+  </ion-content>
+</div>

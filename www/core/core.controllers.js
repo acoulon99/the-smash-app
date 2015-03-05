@@ -3,8 +3,6 @@ angular.module('SmashApp.Core.controllers', [])
   .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', function($scope, $rootScope, $state, $ionicSideMenuDelegate) {
     $scope.greeting = 'hey';
 
-    $rootScope.showTabs = false;
-
 
     // this will hide the tabs when the side menu is open
     $scope.$watch(function () {
@@ -28,6 +26,13 @@ angular.module('SmashApp.Core.controllers', [])
       console.log('toState', toState);
       console.log('fromState', fromState);
       console.log('showTabs', $rootScope.showTabs);
+
+      if(['app.welcome'].indexOf(toState.name) > -1){
+        $rootScope.showTabs = false;
+      } else {
+        $rootScope.showTabs = true;
+      }
+
     });
 
 
@@ -37,9 +42,36 @@ angular.module('SmashApp.Core.controllers', [])
     $scope.greeting = 'hey';
   }])
 
-  .controller('WelcomeCtrl', ['$scope','$rootScope', '$state', function($scope, $rootScope, $state){
+  .controller('WelcomeCtrl', ['$scope','$rootScope', '$state', '$ionicModal', '$ionicPopup', function($scope, $rootScope, $state, $ionicModal, $ionicPopup){
     $scope.greeting = 'hey';
-    console.log('ShowTabs', $rootScope.showTabs);
+
+    $ionicModal.fromTemplateUrl('core/modal.login.html', function($ionicModal){
+      $scope.loginModal = $ionicModal
+    },{
+      scope: $scope,
+      animation: 'slide-in-up'
+    });
+
+    $scope.showLogin = function() {
+      $scope.loginModal.show();
+    };
+
+    $scope.closeLogin = function() {
+      $scope.loginModal.hide();
+    };
+
+    $scope.forgotComingSoon = function(){
+      $ionicPopup.alert({
+         title: '<p style="color:black">Warning</p>',
+         template: '<p style="color:black">Password recovery not ready yet.<br>Please contact an admin.</p>'
+      });
+    };
+
+    $scope.login = function(){
+      $scope.loginModal.hide();
+      $state.go('app.home');
+    };
+
   }])
 
   .controller('PreferencesCtrl', ['$scope', function($scope){
