@@ -2,7 +2,7 @@ angular.module('SmashApp.Core.controllers', [])
 
   .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$localstorage', 'RegAuthServ', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $ionicModal, $localstorage, RegAuthServ) {
     $scope.greeting = 'hey';
-    $scope.user = $localstorage.getObject('user');
+    $rootScope.user = $localstorage.getObject('user');
 
 
     // this will hide the tabs when the side menu is open
@@ -38,17 +38,16 @@ angular.module('SmashApp.Core.controllers', [])
 
 
     $scope.logout = function(){
-      //update user object
-      $scope.user = $localstorage.getObject('user');
 
       // extract loginToken
-      var logoutData = {loginToken: $scope.user.loginToken};
+      var logoutData = {loginToken: $rootScope.user.loginToken};
 
       // send logout request
       console.log('Sending Logout Request', $scope.user);
       RegAuthServ.logout(logoutData).success(function(res){
         console.log('Successful logout', res);
         $localstorage.setObject('user', {});
+        $rootScope.user = {};
         $scope.userOptionsModal.hide();
         $state.go('app.welcome');
       });
@@ -85,7 +84,6 @@ angular.module('SmashApp.Core.controllers', [])
 
   .controller('HomeCtrl', ['$scope', '$localstorage', function($scope, $localstorage){
     $scope.greeting = 'hey';
-    $scope.user = $localstorage.getObject('user');
 
 
   }])
@@ -146,13 +144,14 @@ angular.module('SmashApp.Core.controllers', [])
 
         // set user object in local storage
         $localstorage.setObject('user', res);
+        $rootScope.user = res;
 
         // clear error message
         $scope.errorMessage = undefined;
 
         // redirect to home after successful login
         $scope.loginModal.hide();
-        $state.go('app.home');
+        $state.go('app.home', {}, {reload: true});
 
         // error handler
       }).error(function(res) {
@@ -182,13 +181,14 @@ angular.module('SmashApp.Core.controllers', [])
           RegAuthServ.login($scope.loginData).success(function(res) {
             console.log('Successful Login', res);
             $localstorage.setObject('user', res);
+            $rootScope.user = res;
 
             // remove error message
             $scope.errorMessage = undefined;
 
             // redirect to home after successful login
             $scope.registerModal.hide();
-            $state.go('app.home');
+            $state.go('app.home', {}, {reload: true});
 
         // error handling for login request
         }).error(function(res){
