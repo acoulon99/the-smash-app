@@ -51,7 +51,7 @@
   </ion-side-menu>
 </ion-side-menus>
 
-<div id="tabs-main" class="tabs tabs-dark tabs-icon-only" ng-show="showTabs">
+<div id="tabs-main" class="tabs tabs-dark tabs-icon-only" ng-if="showTabs">
 
   <a class="tab-item disable-user-behavior" title="Profile" nav-clear ui-sref="app.profile">
     <i class="icon ion-person"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>

@@ -37,12 +37,12 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
     controller: 'AppCtrl'
   })
 
-  .state('app.login', {
-    url: "/login",
+  .state('app.welcome', {
+    url: "/welcome",
     views: {
       'menuContent': {
-        templateUrl: 'login/view.login.html',
-        controller: 'LoginCtrl'
+        templateUrl: 'core/view.welcome.html',
+        controller: 'WelcomeCtrl'
       }
     }
   })
@@ -119,5 +119,5 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/welcome');
 });
