@@ -41,32 +41,38 @@ p{
 	z-index: 99;
 }
 
-
-#login-screen .login-content{
+/*
+	WELCOME SCREEN
+*/
+#welcome-screen .welcome-content{
 	text-align: center;
 	background: #181818;
 }
 
-#login-screen .login-content .title{
+#welcome-screen .welcome-content .title{
 	color: white;
 	margin-top: 20px;
 }
 
-#login-screen .login-content .logo-full{
-	width: 80%;
+#welcome-screen .welcome-content .logo{
+	width: 200px;
+	-webkit-filter: drop-shadow(4px 3px 0px #484848); 
 }
 
-#login-screen .login-content .logo{
-	width: 80%;
-	-webkit-filter: drop-shadow(5px 5px 15px #000088); 
-}
-
-#login-screen .button-enter{
+#welcome-screen .button-welcome{
+	font-size: 20px;
 	width: 90%;
-	background: #000099;
-	border: 2px solid black;
+	background: transparent;
+	border: 2px solid white;
 	border-radius: 9px;
 	color: white;
+	margin-top: 20px;
+}
+
+#welcome-screen .button-welcome.activated{
+	font-size: 18px !important;
+	border: 2px solid #DD0000;
+	font-size: smaller;
 }
 
 /*
