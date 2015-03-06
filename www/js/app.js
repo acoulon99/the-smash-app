@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('SmashApp', ['ionic', 'ngCordova',
   'SmashApp.Core.controllers', 'SmashApp.Core.services',
-  'SmashApp.User.controllers',
+  'SmashApp.User.controllers', 'SmashApp.User.services',
   'SmashApp.Messages.controllers',
   'SmashApp.Map.controllers',
   'SmashApp.Tournaments.controllers',
