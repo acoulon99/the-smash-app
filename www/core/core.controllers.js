@@ -74,17 +74,28 @@ angular.module('SmashApp.Core.controllers', [])
       $state.go('app.preferences');
     };
 
-    //Socket Core
+    
+    //Socket Core Functions. 
 
     //Test socket.
-    Socket.on( 'connect', function() {
+    Socket.on('connect', function() {
       console.log('socket connected');
     });
 
     //Receive message and notify the user
-    Socket.on( 'Event:messageReceived', function(message) {
-      $scope.$broadcast('newMessage', message);
+    Socket.on( 'SocketEvent:messageReceived', function(message) {
+      //if the current state is app.messages, let the messages ctrl watcher handle it.
+      if ($state.current.name !== 'app.messages') {
+        $scope.$broadcast('newMessage', message);
+      } 
     });
+
+    //receive the broadcasts
+    $scope.$on('AngularEvent:newMessage', message) {
+      $rootScope.notificationsCount++;
+    };
+
+
 
 
 
