@@ -1,6 +1,6 @@
 angular.module('SmashApp.Map.controllers', [])
 
-  .controller('MapCtrl', ['$scope','$ionicLoading','$cordovaGeolocation', function($scope, $ionicLoading, $cordovaGeolocation) {
+  .controller('MapCtrl', ['$scope','$ionicLoading','$cordovaGeolocation', '$ionicPopup', function($scope, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
     $scope.greeting = 'hey';
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
@@ -29,6 +29,18 @@ angular.module('SmashApp.Map.controllers', [])
 	                position: event.latLng, 
 	                map: map
 	        });
+
+			google.maps.event.addListener($scope.ctrlMarker, 'click', function() {
+    			map.panTo($scope.ctrlMarker.getPosition());
+
+    			var alertPopup = $ionicPopup.show({
+     				title: 'Map Options',
+     				scope: $scope,
+     				buttons: [{text: 'Set My Location'}, {text: 'Host Event'}]
+   				});
+
+  			});
+
         });
 
 
