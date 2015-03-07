@@ -11,7 +11,8 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
   'SmashApp.Map.controllers',
   'SmashApp.Tournaments.controllers',
   'SmashApp.Events.controllers',
-  'SmashApp.Login.controllers'])
+  'SmashApp.Login.controllers',
+  'btford.socket-io'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,7 +28,7 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
   $stateProvider
 
   .state('app', {
@@ -116,6 +117,8 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
       }
     }
   });
+  $sceDelegateProvider.resourceUrlWhitelist(['self', 'https://s3.amazonaws.com/amrap/**', 'http://localhost:3000/**']);
+
 
 
   // if none of the above states are matched, use this as the fallback

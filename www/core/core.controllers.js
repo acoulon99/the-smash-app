@@ -1,9 +1,8 @@
 angular.module('SmashApp.Core.controllers', [])
 
-  .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$localstorage', 'RegAuthServ', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $ionicModal, $localstorage, RegAuthServ) {
+  .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$localstorage', 'RegAuthServ', 'Socket', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $ionicModal, $localstorage, RegAuthServ, Socket) {
     $scope.greeting = 'hey';
     $rootScope.user = $localstorage.getObject('user');
-
 
     // this will hide the tabs when the side menu is open
     $scope.$watch(function () {
@@ -75,7 +74,17 @@ angular.module('SmashApp.Core.controllers', [])
       $state.go('app.preferences');
     };
 
+    //Socket Core
 
+    //Test socket.
+    Socket.on( 'connect', function() {
+      console.log('socket connected');
+    });
+
+    //Receive message and notify the user
+    Socket.on( 'Event:messageReceived', function(message) {
+      $scope.$broadcast('newMessage', message);
+    });
 
 
 
