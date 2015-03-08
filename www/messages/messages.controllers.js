@@ -4,6 +4,7 @@ angular.module('SmashApp.Messages.controllers', [])
     //Pre-build.
     $scope.greeting = 'hey';
     $scope.messages = [];
+    $scope.message = {};
     $scope.typing = false;
     $scope.error.doesExist = false;
 
@@ -19,7 +20,7 @@ angular.module('SmashApp.Messages.controllers', [])
     	$log.log(message);
     	$scope.error.messages.push(message);
     	//Display the errors array if none existed previously.
-    	if ($scope.error.doesExist == false) {
+    	if ($scope.error.doesExist === false) {
     		$scpe.error.doesExist = true;
     	}
     });
@@ -105,7 +106,7 @@ angular.module('SmashApp.Messages.controllers', [])
 
     Socket.on('SocketEvent:userRemoved', function(user) {
     	$log.log('user' + user.name + 'removed.');
-    })
+    });
 
 
 

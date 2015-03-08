@@ -14,11 +14,11 @@
     <div class="list">
       <a ng-repeat="message in messages track by $index" href="#/app/chat/{{message.conversation_id}}">
         <div class="conversation" href="#/app/chat/{{message.conversation_id}}">
-          <img class="profile-pic" ng-src="{{message.other_user_profile_picture}}">
+          <img class="profile-pic" ng-src="{{messages[$index].senderProfileImage}}">
           <div class="middle">
-            <div class="no-wrap"><p class="name">{{message.other_user_name | HtmlSafeSpaces}}</p></div>
-            <p class="time">{{message.receipts[0].created_at_ago}} ago</p>
-            <p class="recent">&quot;{{message.receipts[0].body}}&quot;</p>
+            <div class="no-wrap"><p class="name">{{messages[$index].senderId | HtmlSafeSpaces}}</p></div>
+            <p class="time">{{messages[$index].sentDate}}/p>
+            <p class="recent">&quot;{{messages[$index].body}}&quot;</p>
           </div>
         </div>
       </a>
