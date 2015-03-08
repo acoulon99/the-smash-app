@@ -6,7 +6,7 @@ angular.module('SmashApp.Messages.controllers', [])
     $scope.messages = [];
     $scope.message = {};
     $scope.typing = false;
-    $scope.error.doesExist = false;
+    $scope.error = {doesExist: false};
 
     //////////////////////////////////////////////
     //Socket receive events within chat scope.	//
