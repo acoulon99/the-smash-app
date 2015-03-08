@@ -148,7 +148,7 @@ p{
 	text-align: center;
 }
 
-.popup p{
+.popup p, h1, h2, h3, h4, h5{
 	color: black;
 }
 
@@ -250,3 +250,4 @@ p{
 	width: 100%;
 	height: 100%;
 }
+

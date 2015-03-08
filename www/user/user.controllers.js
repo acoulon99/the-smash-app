@@ -2,13 +2,9 @@ angular.module('SmashApp.User.controllers', [])
 
   .controller('ProfileCtrl', ['$scope', '$rootScope', '$localstorage', 'UserServ', function($scope, $rootScope, $localstorage, UserServ) {
     $scope.greeting = 'hey';
-    $scope.updateData = {};
+    $scope.updateData = $rootScope.user;
 
     $scope.updateUser = function(){
-
-      // attach additional information to update data
-      $scope.updateData.username = $rootScope.user.username;
-      $scope.updateData.loginToken = $rootScope.user.loginToken;
 
       console.log('Doing update', $scope.updateData);
 
