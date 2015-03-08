@@ -191,6 +191,45 @@ p{
 }
 
 /*
+	REGISTER
+*/
+
+#register-modal {
+	background-color: #121314;
+	color: white;
+}
+
+#register-modal .title{
+	color: white;
+}
+
+#register-modal i{
+	color: #88898c;
+}
+
+.register-form label{
+	background: #1c1c1f;
+	color: #88898c;
+	border-color: #2e2f33;
+}
+
+.register-form i{
+	margin-right: 25px;
+}
+
+.register-form input{
+	color: #88898c;
+}
+
+.register-form button{
+	margin-top: 20px;
+}
+
+.popup p, h1, h2, h3, h4, h5{
+	color: black;
+}
+
+/*
     CHAT
 */
 

@@ -1,41 +1,39 @@
 <div id="register-modal" class="modal">
-  <ion-header-bar class="bar-dark">
+  <ion-header-bar class="bar-black">
     <h1 class="title">Register</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeRegister()">Close</button>
+      <button class="button button-clear" ng-click="closeRegister()"><i class="icon ion-close"></i></button>
     </div>
   </ion-header-bar>
   <ion-content class="register-content">
     <form>
-      <div class="list">
+      <div class="list register-form">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="registerData.username">
+          <i class="icon ion-person"></i>
+          <input type="text" ng-model="registerData.username" placeholder="Username">
         </label>
         <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="registerData.password">
+          <i class="icon ion-locked"></i>
+          <input type="password" ng-model="registerData.password" placeholder="Password">
         </label>
         <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="email" ng-model="registerData.email">
+          <i class="icon ion-at"></i>
+          <input type="email" ng-model="registerData.email" placeholder="Email">
         </label>
         <label class="item item-input">
-          <span class="input-label">Tag</span>
-          <input type="text" ng-model="registerData.tag">
+          <i class="icon ion-pricetag"></i>
+          <input type="text" ng-model="registerData.tag" placeholder="Tag">
         </label>
         <label class="item item-input">
-          <span class="input-label">Main(s)</span>
-          <input type="text" ng-model="registerData.mains">
+          <i class="icon ion-person-stalker"></i>
+          <input type="text" ng-model="registerData.mains" placeholder="Main(s)">
         </label>
         <label class="item item-input">
-          <span class="input-label">Smash Game(s)</span>
-          <input type="text" ng-model="registerData.games">
-        </label>
-        <label class="item">
-          <button class="button button-block button-stable" ng-click="register()">Register</button>
+          <i class="icon ion-trophy"></i>
+          <input type="text" ng-model="registerData.games" placeholder="Smash Game(s)">
         </label>
       </div>
     </form>
+    <button class="button button-full button-positive" ng-click="register()">Register</button>
   </ion-content>
 </div>
