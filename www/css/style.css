@@ -18,6 +18,11 @@ p{
 	color: white;
 }
 
+.bar-black {
+	background-color: #121314;
+	border-color: #2e2f33;
+}
+
 .text-black{
 	color: black;
 }
@@ -34,7 +39,8 @@ p{
 	HEADER
 */
 #header-main .bar-header{
-	background: #080808;
+	background-color: #121314;
+	border-color: #2e2f33;
 }
 
 #header-main .bar-header .buttons .ion-navicon{
@@ -69,19 +75,25 @@ p{
 }
 
 #side-menu .bar-header{
-	background: #080808;
+	background-color: #121314;
+	border-color: #2e2f33;
 }
 
 #side-menu .bar-header .title{
 	color: white;
 }
 
-#side-menu .list .item{
-	border: 1px solid;
+#side-menu .list a{
+	border: 1px solid #2e2f33;
+	background-color: #121314;
+	color: #88898c;
 }
 
-#side-menu .list .item .item-content{
-	background: black;
+#side-menu .list a i{
+	margin-right: 25px;
+}
+
+.side-MenuActiveState span{
 	color: white;
 }
 
@@ -161,11 +173,6 @@ p{
 
 #login-modal i{
 	color: #88898c;
-}
-
-.bar-black {
-	background-color: #121314;
-	border-color: #2e2f33;
 }
 
 .login-form label{
