@@ -6,6 +6,11 @@
 
   <ion-content class="dark-background">
     <h1>Home</h1>
+    <ul>
+    	<li ng-repeat="(key,value) in user">
+    		{{key}} - {{value}}
+    	</li>
+    </ul>
     <p>User: {{user}}</p>
   </ion-content>
 </ion-view>
