@@ -91,9 +91,9 @@ angular.module('SmashApp.Core.controllers', [])
     });
 
     //receive the broadcasts
-    $scope.$on('AngularEvent:newMessage', message) {
+    $scope.$on('AngularEvent:newMessage', function(message) {
       $rootScope.notificationsCount++;
-    };
+    });
 
 
 
@@ -115,7 +115,7 @@ angular.module('SmashApp.Core.controllers', [])
 
     // Login Modal
     $ionicModal.fromTemplateUrl('core/modal.login.html', function($ionicModal){
-      $scope.loginModal = $ionicModal
+      $scope.loginModal = $ionicModal;
     },{
       scope: $scope,
       animation: 'slide-in-up'
@@ -139,7 +139,7 @@ angular.module('SmashApp.Core.controllers', [])
 
     // Register Modal
     $ionicModal.fromTemplateUrl('core/modal.register.html', function($ionicModal){
-      $scope.registerModal = $ionicModal
+      $scope.registerModal = $ionicModal;
     },{
       scope: $scope,
       animation: 'slide-in-up'

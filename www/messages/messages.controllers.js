@@ -46,7 +46,7 @@ angular.module('SmashApp.Messages.controllers', [])
     Socket.on('SocketEvent:senderStoppedTyping', function(typing) {
     	$scope.typing = typing;
     	$scope.typing.state = false;
-    })
+    });
 
     //On message received, apply the new message to the current scope's messages array.
     Socket.on('SocketEvent:messageReceived', function(message) {
@@ -66,7 +66,7 @@ angular.module('SmashApp.Messages.controllers', [])
     //On messages send success.
     Socket.on('SocketEvent:SendMessageSuccess', function(msg) {
     	$log.log('Message' + message + 'received');
-    };
+    });
 
     //Delete a msg.
     $scope.deleteSelectedMessage = function(messageID) {
@@ -91,7 +91,7 @@ angular.module('SmashApp.Messages.controllers', [])
 
     //Calls a put on the server side.
     $scope.addUserToConversation = function(conversation) {
-    	Socket.emit('SocketFunction:addUserToConversation', conversation)
+    	Socket.emit('SocketFunction:addUserToConversation', conversation);
     };
 
     //On user add success

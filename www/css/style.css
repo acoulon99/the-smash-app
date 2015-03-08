@@ -91,7 +91,7 @@ p{
 */
 #welcome-screen .welcome-content{
 	text-align: center;
-	background: #181818;
+	background: #181818 url("../img/SSBWallpaper.png") no-repeat center center;
 }
 
 #welcome-screen .welcome-content .scroll{
@@ -111,7 +111,8 @@ p{
 }
 
 #welcome-screen .welcome-content .logo{
-	width: 220px;
+	width: 150px;
+	height: 150px;
 	/*-webkit-filter: drop-shadow(4px 3px 0px #484848); */
 }
 
@@ -139,13 +140,50 @@ p{
 /*
 	LOGIN MODAL
 */
+#login-modal {
+	background-color: #121314;
+	color: white;
+}
+
 #login-modal a{
-	color: blue;
+	color: white;
+	text-decoration: none;
 }
 
 #login-modal .forgot-container{
 	margin-top: 20px;
 	text-align: center;
+}
+
+#login-modal .title{
+	color: white;
+}
+
+#login-modal i{
+	color: #88898c;
+}
+
+.bar-black {
+	background-color: #121314;
+	border-color: #2e2f33;
+}
+
+.login-form label{
+	background: #1c1c1f;
+	color: #88898c;
+	border-color: #2e2f33;
+}
+
+.login-form i{
+	margin-right: 25px;
+}
+
+.login-form input{
+	color: #88898c;
+}
+
+.login-form button{
+	margin-top: 20px;
 }
 
 .popup p, h1, h2, h3, h4, h5{

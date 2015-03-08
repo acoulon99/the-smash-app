@@ -1,28 +1,27 @@
 <div id="login-modal" class="modal">
-  <ion-header-bar class="bar-dark">
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content class="login-content">
-    <form>
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-stable" ng-click="login()">Log in</button>
-        </label>
-      </div>
-    </form>
-    <div class="forgot-container">
-      <a ng-click="forgotComingSoon()"><p class="text-link">Forgot Password?<p></a>
-    </div>
-  </ion-content>
+    <ion-header-bar class="bar-black">
+        <h1 class="title">Login</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()"><i class="icon ion-close"></i>
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="login-content">
+        <form>
+            <div class="list login-form">
+                <label class="item item-input">
+                    <i class="icon ion-person"></i>
+                    <input type="text" ng-model="loginData.username" placeholder="Username">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-locked"></i>
+                    <input type="password" ng-model="loginData.password" placeholder="Password">
+                </label>
+            </div>
+        </form>
+        <button class="button button-full button-positive" ng-click="login()">Log In</button>
+        <div class="forgot-container">
+            <a ng-click="forgotComingSoon()">Forgot Password?</a>
+        </div>
+    </ion-content>
 </div>

@@ -11,7 +11,7 @@ angular.module('SmashApp.Map.controllers', [])
 	      streetViewControl:true,
 	      zoom: 14,
 	      center: $scope.startPos,
-	      mapTypeId: google.maps.MapTypeId.TERRAIN
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    var map = new google.maps.Map(document.getElementById('map'),
 	        mapOptions);
