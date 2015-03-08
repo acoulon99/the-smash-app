@@ -1,9 +1,73 @@
 angular.module('SmashApp.Map.controllers', [])
 
-  .controller('MapCtrl', ['$scope','$ionicLoading','$cordovaGeolocation', '$ionicPopup', function($scope, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
+  .controller('MapCtrl', ['$scope', '$rootScope', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
     $scope.greeting = 'hey';
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
+
+	$scope.clearMyLoc = function(){
+
+	    var userUpdate = {
+	    		location: null,
+	    		loginToken: $rootScope.user.loginToken
+	    	};
+
+		console.log('Updating Location', userUpdate);
+
+	    UserServ.update(userUpdate).success(function(res) {
+	      	console.log('Successful Update', res);
+
+	      	// set user object in local storage
+	      	$localstorage.setObject('user', res);
+	      	$rootScope.user = res;
+
+	      	// clear error message
+	      	$scope.errorMessage = undefined;
+
+	      	// TODO DISPLAY UPDATE SUCCESSFUL MESSAGE
+
+	      	// error handler
+	    }).error(function(res) {
+	    	//
+
+
+	      	// set scope error message
+	      	$scope.errorMessage = res;
+	      	console.log('Error Login', res);
+	    });
+	};
+
+	$scope.toggleActive = function(){
+
+	    var userUpdate = {
+	    		active: $rootScope.user.active ? false : true,
+	    		loginToken: $rootScope.user.loginToken
+	    	};
+
+
+	    console.log('Updating Active', userUpdate);
+
+	    UserServ.update(userUpdate).success(function(res) {
+	      	console.log('Successful Update', res);
+
+	      	// set user object in local storage
+	      	$localstorage.setObject('user', res);
+	      	$rootScope.user = res;
+
+	      	// clear error message
+	      	$scope.errorMessage = undefined;
+
+	      	// TODO DISPLAY UPDATE SUCCESSFUL MESSAGE
+
+	      	// error handler
+	    }).error(function(res) {
+	      	// set scope error message
+	      	$scope.errorMessage = res;
+	      	console.log('Error Login', res);
+	    });
+
+
+	};
 
     $scope.init = function() {
 
@@ -36,16 +100,48 @@ angular.module('SmashApp.Map.controllers', [])
     			var alertPopup = $ionicPopup.show({
      				title: 'Map Options',
      				scope: $scope,
-     				buttons: [{text: 'Set My Location'}, {text: 'Host Event'}]
+     				buttons: [{text: 'Set My Location', onTap: function(event){
+
+	 				    var userUpdate = {
+	 				    		location: [
+	 				    			$scope.ctrlMarker.getPosition().lng(), 
+	 				    			$scope.ctrlMarker.getPosition().lat()
+	 				    		],
+	 				    		loginToken: $rootScope.user.loginToken
+	 				    	};
+
+	 				    console.log('Updating Location', userUpdate);
+
+				        UserServ.update(userUpdate).success(function(res) {
+				          	console.log('Successful Update', res);
+
+				          	// set user object in local storage
+				          	$localstorage.setObject('user', res);
+				          	$rootScope.user = res;
+
+				          	// clear error message
+				          	$scope.errorMessage = undefined;
+
+				          	// TODO DISPLAY UPDATE SUCCESSFUL MESSAGE
+
+				          	// error handler
+				        }).error(function(res) {
+				        	//
+
+
+				          	// set scope error message
+				          	$scope.errorMessage = res;
+				          	console.log('Error Login', res);
+				        });
+     				}}, {text: 'Host Event'}]
    				});
 
   			});
 
         });
-
-
-
 		$scope.map = map;
+
+
 
 
 
@@ -105,6 +201,5 @@ angular.module('SmashApp.Map.controllers', [])
 		*/
 
 	};
-
 
   }]);

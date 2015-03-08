@@ -5,6 +5,16 @@
   </ion-nav-buttons>
 
   <ion-content class="dark-background has-footer map-content">
+  	<div class="list">
+  		<div class="item item-button-right">
+  			<p>Location: {{user.location || 'not set'}}</p>
+  			<button class="button button-positive button-clear-location" ng-click="clearMyLoc()">Clear</button>
+  		</div>
+  		<div class="item item-button-right">
+  			<p>Active: {{user.active}}</p>
+  			<button class="button button-positive button-toggle-active" ng-click="toggleActive()">Toggle</button>
+  		</div>
+  	</div>
     <div id="map" data-tap-disabled="true"></div>
   </ion-content>
 </ion-view>
