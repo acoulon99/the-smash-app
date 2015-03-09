@@ -22,6 +22,14 @@ angular.module('SmashApp.User.services',[]).value('SMASH_SERVER_API_URL','http:/
 						'Content-Type' : 'application/json'
 					}
 				});
+			},
+			localList: function(listParams) {
+				console.log('UserServe.localList()', listParams);
+				return $http.post(SMASH_SERVER_API_URL + '/users/local', listParams, {
+					headers: {
+						'Content-Type' : 'application/json'
+					}
+				});
 			}
 		};
 	}]);

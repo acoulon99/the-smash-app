@@ -4,6 +4,36 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.greeting = 'hey';
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
+    $scope.playerMarkers = [];
+
+    $scope.findLocalPlayers = function(){
+
+    	var listParams = {
+    		latitude: 33,
+    		longitude: -84,
+    		radius: 2000
+    	}
+
+    	UserServ.localList(listParams).success(function(res){
+    		console.log('Success Local List', res);
+
+    		var playerList = res;
+    		console.log('playerListLocal', playerList);
+
+    		for(var i = 0; i < playerList.length; i++){
+    			var marker = new google.maps.Marker({
+    				position: {lat: playerList[i].location[1], lng: playerList[i].location[0]},
+    				map: $scope.map
+    			});
+
+    			$scope.playerMarkers.push(marker);
+    		}
+
+
+    	}).error(function(res){
+    		console.log('Error', res);
+    	});
+    };
 
 	$scope.clearMyLoc = function(){
 
@@ -33,7 +63,7 @@ angular.module('SmashApp.Map.controllers', [])
 
 	      	// set scope error message
 	      	$scope.errorMessage = res;
-	      	console.log('Error Login', res);
+	      	console.log('Error', res);
 	    });
 	};
 
@@ -133,7 +163,37 @@ angular.module('SmashApp.Map.controllers', [])
 				          	$scope.errorMessage = res;
 				          	console.log('Error Login', res);
 				        });
-     				}}, {text: 'Host Event'}]
+     				}},
+     				{text: 'Find Players', onTap: function(event){
+
+     					// find players function
+				     	var listParams = {
+				    		latitude: $scope.ctrlMarker.getPosition().lat(),
+				    		longitude: $scope.ctrlMarker.getPosition().lng(),
+				    		radius: 2000 // 2 km search radius
+				    	}
+
+				    	// server call to get ocal list
+				    	UserServ.localList(listParams).success(function(res){
+				    		// set the player list from the response
+				    		console.log('Success Local List', res);
+				    		var playerList = res;
+
+				    		// for each player in the list, add a marker for them
+				    		for(var i = 0; i < playerList.length; i++){
+				    			var marker = new google.maps.Marker({
+				    				position: {lat: playerList[i].location[1], lng: playerList[i].location[0]},
+				    				map: $scope.map
+				    			});
+				    			$scope.playerMarkers.push(marker);
+				    		}
+
+
+				    	}).error(function(res){
+				    		console.log('Error', res);
+				    	});
+
+     				}}]
    				});
 
   			});
