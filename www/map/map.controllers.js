@@ -131,6 +131,21 @@ angular.module('SmashApp.Map.controllers', [])
 	    var map = new google.maps.Map(document.getElementById('map'),
 	        mapOptions);
 
+
+	    console.log('User', $rootScope.user);
+	    // add user location to map if it is set
+	    if ($rootScope.user.location){
+
+	    	console.log('adding user position to the map');
+
+			var myMarker = new google.maps.Marker({
+				position: {lat: $rootScope.user.location[1], lng: $rootScope.user.location[0]},
+				map: $scope.map,
+				icon: 'img/active-player-blue.png'
+			});
+
+	    }
+
 		// listener for dropping a marker	   
         google.maps.event.addListener(map, 'click', function(event) {
 

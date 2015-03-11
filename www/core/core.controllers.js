@@ -179,6 +179,10 @@ angular.module('SmashApp.Core.controllers', [])
         // set scope error message
         $scope.errorMessage = res;
         console.log('Error Login', res);
+        $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+        });
       });
 
     };
@@ -215,6 +219,12 @@ angular.module('SmashApp.Core.controllers', [])
             // set error message
             $scope.errorMessage = res;
             console.log('Error Login', res);
+
+            $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+            });
+
         });
 
       // error handling for registration request
@@ -222,6 +232,10 @@ angular.module('SmashApp.Core.controllers', [])
           // set error message
           $scope.errorMessage = res;
           console.log('Error Registration', res);
+          $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+          });
       });
     };
 
