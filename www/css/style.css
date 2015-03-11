@@ -345,6 +345,10 @@ p{
 	height: 100%;
 }
 
+#map-player-info-content p{
+	color: black;
+}
+
 /* 
 	PREFERENCES
 */

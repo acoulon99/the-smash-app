@@ -5,6 +5,27 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
     $scope.playerMarkers = [];
+    $scope.playerInfos = [];
+
+    function attachPlayerInfo(map, marker, content){
+
+    	var infoWindow = new google.maps.InfoWindow();
+        // Attaching a click event to the current marker
+        google.maps.event.addListener(marker, 'click', function(event) {
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+        });
+
+        // Creating a closure to retain the correct data 
+        // Note how I pass the current data in the loop into the closure (marker, data)
+        (function(marker, content) {
+          // Attaching a click event to the current marker
+          google.maps.event.addListener(marker, "click", function(event) {
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+          });
+        })(marker, content);
+    };
 
     $scope.findLocalPlayers = function(){
 
@@ -121,7 +142,8 @@ angular.module('SmashApp.Map.controllers', [])
             // create new marker
 			$scope.ctrlMarker = new google.maps.Marker({
 	                position: event.latLng, 
-	                map: map
+	                map: map,
+	                icon: 'img/map-control-blue.png'
 	        });
 
 			google.maps.event.addListener($scope.ctrlMarker, 'click', function() {
@@ -175,16 +197,37 @@ angular.module('SmashApp.Map.controllers', [])
 
 				    	// server call to get ocal list
 				    	UserServ.localList(listParams).success(function(res){
-				    		// set the player list from the response
+				    		// success
 				    		console.log('Success Local List', res);
+				    		
+				    		// remove previous markers from map and clear them in memory
+				    		for (var i = 0; i < $scope.playerMarkers.length; i++){
+				    			$scope.playerMarkers[i].setMap(null);
+				    		}
+				    		$scope.playerMarkers = [];
+
+				    		// set the player list from the response
 				    		var playerList = res;
+
+
 
 				    		// for each player in the list, add a marker for them
 				    		for(var i = 0; i < playerList.length; i++){
+
 				    			var marker = new google.maps.Marker({
 				    				position: {lat: playerList[i].location[1], lng: playerList[i].location[0]},
-				    				map: $scope.map
+				    				map: $scope.map,
+				    				icon: 'img/active-player-red.png'
 				    			});
+
+			    				var infoWindowContent = '<div id="map-player-info-content">'+
+			    					'<p>Tag: ' + playerList[i].tag + '</p>'+
+			    					'<p>Game(s): ' + playerList[i].games + '</p>'+
+			    					'<p>Main(s): ' + playerList[i].mains + '</p>'+
+			    					'</div>';		
+
+			    				attachPlayerInfo($scope.map, marker, infoWindowContent);		    			
+
 				    			$scope.playerMarkers.push(marker);
 				    		}
 
@@ -200,66 +243,6 @@ angular.module('SmashApp.Map.controllers', [])
 
         });
 		$scope.map = map;
-
-
-
-
-
-	    /*
-	    var posOptions = {timeout: 10000, enableHighAccuracy: false};
-	    $cordovaGeolocation
-	    	.getCurrentPosition(posOptions)
-	    	.then(function (pos) {
-
-			  var myPos = new google.maps.Marker({
-		        position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-		        map: map,
-		        title: 'MyPos'
-		      });
-
-			  google.maps.event.addListener(myPos, 'click', function() {
-		        var infowindow = new google.maps.InfoWindow({
-		      	  content: 'Me'
-		        });
-
-		        infowindow.open(map, myPos);
-		      });
-
-
-		      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-
-		    }, function(err) {
-		      alert('Unable to get location: ' + err.message);
-		    });
-
-		*/
-
-	    /*
-	    navigator.geolocation.getCurrentPosition(function(pos) {
-
-		  var myPos = new google.maps.Marker({
-	        position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-	        map: map,
-	        title: 'MyPos'
-	      });
-
-
-		  google.maps.event.addListener(myPos, 'click', function() {
-	        var infowindow = new google.maps.InfoWindow({
-	      	  content: 'Me'
-	        });
-
-	        infowindow.open(map, myPos);
-	      });
-
-	      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-	      $ionicLoading.hide();
-	    }, function(error) {
-	      alert('Unable to get location: ' + error.message);
-	    });
-
-		*/
-
 	};
 
   }]);
