@@ -29,6 +29,26 @@ p{
 	background-color: #121314;
 }
 
+<<<<<<< HEAD
+=======
+.text-right{
+	text-align: right;
+}
+
+.text-left{
+	text-align: left;
+}
+
+.float-right{
+	float: right;
+}
+
+.float-left{
+	float: left;
+}
+
+
+>>>>>>> ac8e57cbba5dde68a4d4337831769ebcab377bd7
 /*
 	HEADER
 */
@@ -190,7 +210,7 @@ p{
 	margin-top: 20px;
 }
 
-.popup p, h1, h2, h3, h4, h5{
+.popup {
 	color: black;
 }
 
@@ -328,6 +348,25 @@ p{
 	width: 100%;
 	height: 100%;
 }
+
+#map-player-info-content p{
+	color: black;
+}
+
+#map-screen .status-bar{
+	background: #2e2f33;
+	border: 0;
+}
+
+#map-screen .status-bar .button-clear-location{
+	margin-left: 20px;
+	font-weight: lighter;
+}
+
+#map-screen .status-bar p{
+	color: white;
+}
+
 
 /* 
 	PREFERENCES

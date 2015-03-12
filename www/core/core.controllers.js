@@ -3,6 +3,7 @@ angular.module('SmashApp.Core.controllers', [])
   .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$localstorage', 'RegAuthServ', 'Socket', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $ionicModal, $localstorage, RegAuthServ, Socket) {
     $scope.greeting = 'hey';
     $rootScope.user = $localstorage.getObject('user');
+    $rootScope.allowSideMenu = true; // allow by default
 
     // this will hide the tabs when the side menu is open
     $scope.$watch(function () {
@@ -26,12 +27,21 @@ angular.module('SmashApp.Core.controllers', [])
       console.log('toState', toState);
       console.log('fromState', fromState);
       console.log('showTabs', $rootScope.showTabs);
+      console.log('allowSideMenu', $rootScope.allowSideMenu);
 
       if(['app.welcome'].indexOf(toState.name) > -1){
         $rootScope.showTabs = false;
       } else {
         $rootScope.showTabs = true;
       }
+
+
+      if(['app.welcome'].indexOf(toState.name) > -1){
+        $rootScope.allowSideMenu = false;
+      } else {
+        $rootScope.allowSideMenu = true;
+      }
+
 
     });
 
@@ -112,6 +122,7 @@ angular.module('SmashApp.Core.controllers', [])
     $scope.greeting = 'hey';
     $scope.loginData = {};
     $scope.registerData = {};
+    $rootScope.allowSideMenu = false;
 
     // Login Modal
     $ionicModal.fromTemplateUrl('core/modal.login.html', function($ionicModal){
@@ -171,7 +182,7 @@ angular.module('SmashApp.Core.controllers', [])
 
         // redirect to home after successful login
         $scope.loginModal.hide();
-        $state.go('app.home', {}, {reload: true});
+        $state.go('app.map', {}, {reload: true});
 
         // error handler
       }).error(function(res) {
@@ -179,6 +190,10 @@ angular.module('SmashApp.Core.controllers', [])
         // set scope error message
         $scope.errorMessage = res;
         console.log('Error Login', res);
+        $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+        });
       });
 
     };
@@ -208,13 +223,19 @@ angular.module('SmashApp.Core.controllers', [])
 
             // redirect to home after successful login
             $scope.registerModal.hide();
-            $state.go('app.home', {}, {reload: true});
+            $state.go('app.map', {}, {reload: true});
 
         // error handling for login request
         }).error(function(res){
             // set error message
             $scope.errorMessage = res;
             console.log('Error Login', res);
+
+            $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+            });
+
         });
 
       // error handling for registration request
@@ -222,6 +243,10 @@ angular.module('SmashApp.Core.controllers', [])
           // set error message
           $scope.errorMessage = res;
           console.log('Error Registration', res);
+          $ionicPopup.alert({
+               title: 'No Johns',
+               template: res.message
+          });
       });
     };
 
