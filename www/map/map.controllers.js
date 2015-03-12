@@ -27,6 +27,14 @@ angular.module('SmashApp.Map.controllers', [])
         })(marker, content);
     };
 
+    $scope.isActive = function(){
+    	if($rootScope.user.active){
+    		return{"background":"#E80000","border":"black"};
+    	} else {
+    		return{"background":"#800000","border":"black"};
+    	}
+    };
+
     $scope.findLocalPlayers = function(){
 
     	var listParams = {

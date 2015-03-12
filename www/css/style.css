@@ -35,6 +35,21 @@ p{
 	background-color: #121314;
 }
 
+.text-right{
+	text-align: right;
+}
+
+.text-left{
+	text-align: left;
+}
+
+.float-right{
+	float: right;
+}
+
+.float-left{
+	float: left;
+}
 
 
 /*
@@ -348,6 +363,21 @@ p{
 #map-player-info-content p{
 	color: black;
 }
+
+#map-screen .status-bar{
+	background: #2e2f33;
+	border: 0;
+}
+
+#map-screen .status-bar .button-clear-location{
+	margin-left: 20px;
+	font-weight: lighter;
+}
+
+#map-screen .status-bar p{
+	color: white;
+}
+
 
 /* 
 	PREFERENCES
