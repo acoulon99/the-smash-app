@@ -1,12 +1,6 @@
-/* Empty. Add your own CSS if you like */
-
-
 /*
 	GLOBAL
 */
-
-
-
 body, h1, h2, h3, h4, h5 {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
@@ -35,8 +29,6 @@ p{
 	background-color: #121314;
 }
 
-
-
 /*
 	HEADER
 */
@@ -63,16 +55,12 @@ p{
 	z-index: 99;
 }
 
-
-
 /*
 	TABS
 */
 #tabs-main{
 	background: #383838;
 }
-
-
 
 /*
 	SIDE MENU
@@ -106,7 +94,6 @@ p{
 .side-MenuActiveState span{
 	color: white;
 }
-
 
 /*
 	WELCOME SCREEN
@@ -155,7 +142,7 @@ p{
 }
 
 #welcome-screen .button-welcome.activated{
-	border: 2px solid #DD0000;
+	border-color: #DD0000;
 	color: #DD0000;
 }
 
@@ -328,9 +315,6 @@ p{
     right: 0;
 }
 
-
-
-
 /*
 	MAP
 */
@@ -348,8 +332,6 @@ p{
 /* 
 	PREFERENCES
 */
-
-
 
 /*
 	COMING SOON
@@ -390,8 +372,3 @@ p{
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
-
-
-
-
-
