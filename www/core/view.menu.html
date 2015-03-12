@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-    <ion-side-menu-content>
+    <ion-side-menu-content drag-content="allowSideMenu">
         <ion-nav-bar id="header-main">
 
             <img class="logo-full" ng-click="showUserOptions()" ng-src="img/smash-logo-full.png">
@@ -22,9 +22,7 @@
         </ion-header-bar>
         <ion-content>
             <ul class="list">
-                <a nav-clear menu-close ui-sref="app.home" ui-sref-active="side-MenuActiveState" class="item">
-                    <span><i class="icon ion-home"></i>Home</span>
-                </a>
+
                 <a nav-clear menu-close ui-sref="app.profile" ui-sref-active="side-MenuActiveState" class="item">
                     <span><i class="icon ion-person"></i>Profile</span>
                 </a>
@@ -40,12 +38,23 @@
                 <a nav-clear menu-close ui-sref="app.tournaments" ui-sref-active="side-MenuActiveState" class="item">
                     <span><i class="icon ion-trophy"></i>Tournaments</span>
                 </a>
+
+                <a nav-clear menu-close ng-click="logout()" ui-sref-active="side-MenuActiveState" class="item">
+                    <span><i class="icon ion-reply"></i>Logout</span>
+                </a>
+
+                <!--
                 <a nav-clear menu-close ui-sref="app.preferences" ui-sref-active="side-MenuActiveState" class="item">
                     <span><i class="icon ion-settings"></i>Preferences</span>
                 </a>
-                <a nav-clear menu-close ui-sref="app.login" ui-sref-active="side-MenuActiveState" class="item">
-                    <span><i class="icon ion-reply"></i>Logout</span>
+                -->
+
+                <!--
+                <a nav-clear menu-close ui-sref="app.home" ui-sref-active="side-MenuActiveState" class="item">
+                    <span><i class="icon ion-home"></i>Home</span>
                 </a>
+                -->
+
             </ul>
         </ion-content>
     </ion-side-menu>
@@ -57,20 +66,23 @@
         <i class="icon ion-person"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
     </a>
 
-    <a class="tab-item disable-user-behavior" title="Chat" nav-clear ui-sref="app.messages">
-        <i class="icon ion-ios-chatboxes"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
-    </a>
-
-    <a class="tab-item disable-user-behavior" title="Home" nav-clear ui-sref="app.home">
-        <i class="icon ion-home"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
-    </a>
-
     <a class="tab-item disable-user-behavior" title="Map" nav-clear ui-sref="app.map">
         <i class="icon ion-ios-world"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
     </a>
 
+    <a class="tab-item disable-user-behavior" title="Chat" nav-clear ui-sref="app.messages">
+        <i class="icon ion-ios-chatboxes"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+    </a>
+
+    <!--
+    <a class="tab-item disable-user-behavior" title="Home" nav-clear ui-sref="app.home">
+        <i class="icon ion-home"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+    </a>
+    -->
+
+    <!--
     <a class="tab-item disable-user-behavior" title="Preferences" nav-clear ui-sref="app.preferences">
         <i class="icon ion-gear-a"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
     </a>
-
+    -->
 </div>
