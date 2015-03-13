@@ -1,45 +1,27 @@
-<ion-view title="Message-Conversation">
+<ion-view view-title="Messages" hide-back-button="true">
+
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-content class="chat-content">
-        <div class="title-container">
-            <p>Conversation With <span class="text-red">User Name</span>
-            </p>
-        </div>
-        <div class="list conversation">
-            <div class="message">
-                <!-- ng-repeat -->
-                <div class="receive">
-                    <!-- ng-if -->
-                    <!-- <img class="sender-pic" ng-src="img/registration/add-anon.png">  -->
-                    <p class="body">Hey, I was at the gym but didn't see you.</p>
-                </div>
-                <!--
-            <div class="send">       ng-if 
-                <p class="body">Hey, I was at the gym but didn't see you.</p>
-                <img class="my-pic" ng-src="img/registration/add-anon.png">     
-            </div>
-            -->
-            </div>
-            <div class="message">
-                <!-- ng-repeat -->
-                <div class="send">
-                    <!-- ng-if -->
-                    <!-- <img class="my-pic" ng-src="img/registration/add-anon.png"> -->
-                    <p class="body">Hey, I was at the gym but didn't see you.</p>
-                </div>
-                <!--
-            <div class="send">       ng-if 
-                <p class="body">Hey, I was at the gym but didn't see you.</p>
-                <img class="my-pic" ng-src="img/registration/add-anon.png">     
-            </div>
-            -->
-            </div>
-        </div>
-        <div class="send-container">
-            <input type="text" ng-model="message.body" placeholder="What's up?">
-            <button class="button button-send-message"></button>
-        </div>
+
+    <ion-content class="dark-background">
+		<div class="row">
+			<div class="col">
+				<div class="list">
+				    <a class="item item-thumbnail-left" href="#/app/messages/m2k">
+				        <img src="img/m2k-profile.jpg">
+				        <h2>M2King</h2>
+				        <h3><span class="text-bold">Last:</span> Mar 12, 2015 5:10am</h3>
+				        <p><span class="text-bold">Message:</span> Hey! I wanted to play! Where did you go?</p>
+				    </a>
+				    <a class="item item-thumbnail-left" href="#/app/messages/hbox">
+				        <img src="img/hbox-profile.jpg">
+				        <h2>HungryBox</h2>
+				        <h3><span class="text-bold">Last:</span> Feb 12, 2015 2:17pm</h3>
+				        <p><span class="text-bold">Message:</span> Got time for some games?</p>
+				    </a>
+				</div>
+			</div>
+		</div>
     </ion-content>
 </ion-view>

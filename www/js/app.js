@@ -78,6 +78,24 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
     }
   })
 
+  .state('app.m2kChat', {
+    url: "/messages/m2k",
+    views: {
+      'menuContent': {
+        templateUrl: 'messages/view.example.m2k.html'      
+      }
+    }
+  })
+
+  .state('app.hboxChat', {
+    url: "/messages/hbox",
+    views: {
+      'menuContent': {
+        templateUrl: 'messages/view.example.hbox.html'      
+      }
+    }
+  })
+
   .state('app.map', {
     url: "/map",
     views: {

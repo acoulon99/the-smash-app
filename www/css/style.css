@@ -257,86 +257,30 @@ p{
 }
 
 /*
-    CHAT
+	MESSAGING
 */
 
-.chat-content .scroll{
-    width: 100%;
-    height: 100%;
+#chat-example .scroll{
+	height: 100%;
+	width: 100%;
 }
 
-.chat-content {
-    background: #ddd;
+#chat-example .message-bar{
+	position: fixed;
+	bottom: 0px;
 }
 
-.chat-content .title-container{
-    background: white;
-    text-align: center;
-    height: 40px;
+#chat-example .message-bar input{
+	margin-left: 10px;
 }
 
-.chat-content .title-container p{
-    color: black;
+#chat-example .message-bar .button-send{
+	height: 100%;
+	top: 0;
+	right: 0;
 }
 
-.chat-content .conversation{
-    position: relative;
-    margin: 20px 20px;
-}
 
-.chat-content .conversation p{
-    color: black;
-}
-
-.chat-content .conversation img{
-    width: 40px;
-    height: 40px;
-}
-
-.chat-content .conversation .message{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #b0b0b0;
-}
-
-.chat-content .conversation .message .receive{
-    text-align: left;
-}
-
-.chat-content .conversation .message .send{
-    text-align: right;
-}
-
-.chat-content .conversation .sender-pic{
-    left: 0;
-}
-
-.chat-content .conversation .my-pic{
-    right: 0;
-}
-
-.chat-content .send-container{
-    position: absolute;
-    bottom: 54px;
-    height: 40px;
-    width: 100%;
-    background: white;
-}
-
-.chat-content .send-container input{
-    margin-left: 20px;
-    background: white;
-}
-
-.chat-content .button-send-message{
-    position: absolute;
-    background: #8c8f26;
-    height: 100%;
-    width: 40px;
-
-    top: 0;
-    right: 0;
-}
 
 /*
 	MAP

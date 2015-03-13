@@ -26,7 +26,8 @@ angular.module('SmashApp.Core.controllers', [])
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       console.log('toState', toState);
       console.log('fromState', fromState);
-
+      console.log('showTabs', $rootScope.showTabs);
+      console.log('allowSideMenu', $rootScope.allowSideMenu);
 
       if(['app.welcome'].indexOf(toState.name) > -1){
         $rootScope.showTabs = false;
@@ -35,14 +36,13 @@ angular.module('SmashApp.Core.controllers', [])
       }
 
 
-      if(['app.welcome'].indexOf(toState.name) > -1){
+      if(['app.welcome', 'app.m2kChat', 'app.hboxChat'].indexOf(toState.name) > -1){
         $rootScope.allowSideMenu = false;
       } else {
         $rootScope.allowSideMenu = true;
       }
 
-      console.log('showTabs', $rootScope.showTabs);
-      console.log('allowSideMenu', $rootScope.allowSideMenu);
+
     });
 
 
