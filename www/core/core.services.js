@@ -36,10 +36,10 @@ angular.module('SmashApp.Core.services',[]).value('SMASH_SERVER_API_URL','http:/
 		};
 	}])
 
-	.factory('Socket', ['socketFactory', function(socketFactory) {
+	.factory('Socket', ['socketFactory', function(socketFactory) {		
 		return socketFactory({
 			prefix: '',
-			ioSocket: io.connect('http://localhost:3000')
+			//ioSocket: io.connect('http://localhost:3000')
 		});
 	}])
 
