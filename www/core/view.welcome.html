@@ -1,14 +1,22 @@
 <ion-view id="welcome-screen" view-title=" " hide-back-button="true" hide-nav-bar="true">
-    <ion-content class="welcome-content">
-        <h1 class="title">The Smash App</h1>
-
-        <div class="logo-container">
-            <object class="logo" data="img/smashLogo.svg" type="image/svg+xml"></object>
+    <ion-content scroll="false" class="welcome-content">
+        <div class="row">
+            <div class="col">
+                <h1 class="title">The Smash App</h1>
+            </div>
         </div>
 
-        <div class="button-container">
-            <button class="button button-welcome" ng-click="showLogin()">Login</button>
-            <button class="button button-welcome" ng-click="showRegister()">Register</button>
+        <div class="row" id="welcomeLogoContainer">
+            <div class="col">
+                <object class="logoMain" data="img/smashBallWhite.svg" type="image/svg+xml"></object>
+            </div>
+        </div>
+
+        <div class="row" id="welcome-buttons">
+            <div class="col">
+                <button class="button button-block button-welcome" ng-click="showLogin()">Login</button>
+                <button class="button button-block button-welcome" ng-click="showRegister()">Register</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>

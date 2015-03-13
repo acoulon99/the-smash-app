@@ -1,33 +1,37 @@
 <ion-view view-title="Profile" hide-back-button="true">
 
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-  
-  <ion-content class="dark-background">
-	  <div class="list">
-	  	<div class="item item-divider">
-	  		Welcome {{user.username}}
-	  	</div>
-	    <label class="item item-input">
-	      <span class="input-label">Email</span>
-	      <input type="email" ng-model="updateData.email">
-	    </label>
-	    <label class="item item-input">
-	      <span class="input-label">Tag</span>
-	      <input type="text" ng-model="updateData.tag">
-	    </label>
-	    <label class="item item-input">
-	      <span class="input-label">Main(s)</span>
-	      <input type="text" ng-model="updateData.mains">
-	    </label>
-	    <label class="item item-input">
-	      <span class="input-label">Smash Game(s)</span>
-	      <input type="text" ng-model="updateData.games">
-	    </label>
-	    <label class="item">
-	      <button class="button button-block button-stable" ng-click="updateUser()">Update Information</button>
-	    </label>
-	  </div>
-  </ion-content>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="dark-background">
+		<div class="row">
+			<div class="col">
+				<div class="list">
+				    <div class="item item-divider">
+				        Welcome {{user.username}}
+				    </div>
+				    <label class="item item-input">
+				        <span class="input-label">Email</span>
+				        <input type="email" ng-model="updateData.email">
+				    </label>
+				    <label class="item item-input">
+				        <span class="input-label">Tag</span>
+				        <input type="text" ng-model="updateData.tag">
+				    </label>
+				    <label class="item item-input">
+				        <span class="input-label">Main(s)</span>
+				        <input type="text" ng-model="updateData.mains">
+				    </label>
+				    <label class="item item-input">
+				        <span class="input-label">Smash Game(s)</span>
+				        <input type="text" ng-model="updateData.games">
+				    </label>
+				    <label class="item">
+				        <button class="button button-block button-stable" ng-click="updateUser()">Update Information</button>
+				    </label>
+				</div>
+			</div>
+		</div>
+    </ion-content>
 </ion-view>
