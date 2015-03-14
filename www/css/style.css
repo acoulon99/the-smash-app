@@ -316,15 +316,11 @@ p{
 
 #map-player-info-content{
 	text-align: center;
-	border: 1px solid gray;
-	padding: 10px;
-	margin: 0 10px 0 0;
-	background: whitesmoke;
-	box-shadow: 1px 2px 1px black;
 }
 
 #map-player-info-content p{
 	color: black;
+	font-weight: normal;
 }
 
 #map-player-info-content .button-message{
