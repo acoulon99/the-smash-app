@@ -1,6 +1,6 @@
 angular.module('SmashApp.Map.controllers', [])
 
-.controller('MapCtrl', ['$scope', '$rootScope', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
+.controller('MapCtrl', ['$scope', '$rootScope', '$state', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
     $scope.greeting = 'hey';
     $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
@@ -272,9 +272,10 @@ angular.module('SmashApp.Map.controllers', [])
                                     });
 
                                     var infoWindowContent = '<div id="map-player-info-content">' +
-                                        '<p>Tag: ' + playerList[i].tag + '</p>' +
-                                        '<p>Game(s): ' + playerList[i].games + '</p>' +
-                                        '<p>Main(s): ' + playerList[i].mains + '</p>' +
+                                        '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
+                                        '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
+                                        '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
+                                        '<button class="button button-positive button-message" ng-click="goToHboxChat()">Message</button>' +
                                         '</div>';
 
                                     attachPlayerInfo($scope.map, marker, infoWindowContent);
@@ -296,5 +297,10 @@ angular.module('SmashApp.Map.controllers', [])
         });
         $scope.map = map;
     };
+
+    $scope.goToHboxChat = function(){
+        console.log('click msg button');
+        $state.go('app.hboxChat');
+    }
 
 }]);
