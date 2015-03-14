@@ -122,6 +122,7 @@ p{
 #welcome-screen .welcome-content{
 	text-align: center;
 	background: #121314 url("../img/SSBWallpaper.png") no-repeat center center;
+	background-size: cover;
 }
 
 #welcome-screen .welcome-content .title{
@@ -319,6 +320,7 @@ p{
 */
 .comingSoonBG{
 	background: #121314 url("../img/SSBWallpaper2.png") no-repeat center center;
+	background-size: cover;
 }
 
 .soonH1{
