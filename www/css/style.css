@@ -21,6 +21,10 @@ p{
 	color: black;
 }
 
+.text-bold{
+	font-weight: bold;
+}
+
 .text-link{
 	color: blue;
 }
@@ -309,9 +313,28 @@ p{
 	height: 100%;
 }
 
+#map-player-info-content{
+	text-align: center;
+	border: 1px solid gray;
+	padding: 10px;
+	margin: 0 10px 0 0;
+	background: whitesmoke;
+	box-shadow: 1px 2px 1px black;
+}
+
 #map-player-info-content p{
 	color: black;
 }
+
+#map-player-info-content .button-message{
+	min-height: 0;
+	height: 25px;
+	line-height: 25px;
+	font-size: 15px;
+	background: #301FE1;
+	border-color: #1A0387;
+}
+
 
 
 /*
