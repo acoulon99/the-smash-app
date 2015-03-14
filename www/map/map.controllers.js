@@ -10,11 +10,24 @@ angular.module('SmashApp.Map.controllers', [])
 
     function attachPlayerInfo(map, marker, content) {
 
-        var infoWindow = new google.maps.InfoWindow();
+        //var infoWindow = new google.maps.InfoWindow();
+
+
+
         // Attaching a click event to the current marker
         google.maps.event.addListener(marker, 'click', function(event) {
-            infoWindow.setContent(content);
-            infoWindow.open(map, marker);
+            //infoWindow.setContent(content);
+            //infoWindow.open(map, marker);
+
+            $ionicPopup.show({
+                title: 'Player Card',
+                scope: $scope,
+                template: content,
+                buttons: [{text:'Message', onTap: function(){
+                    $state.go('app.hboxChat');
+                }},{text:'Close'}]
+            });
+
         });
 
         // Creating a closure to retain the correct data 
@@ -275,7 +288,6 @@ angular.module('SmashApp.Map.controllers', [])
                                         '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
                                         '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
                                         '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
-                                        '<button class="button button-positive button-message" ng-click="goToHboxChat()">Message</button>' +
                                         '</div>';
 
                                     attachPlayerInfo($scope.map, marker, infoWindowContent);
