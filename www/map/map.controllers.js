@@ -2,11 +2,12 @@ angular.module('SmashApp.Map.controllers', [])
 
 .controller('MapCtrl', ['$scope', '$rootScope', '$state', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
     $scope.greeting = 'hey';
-    $scope.startPos = new google.maps.LatLng(33.791484, -84.407535);
+    $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
     $scope.playerMarkers = [];
     $scope.playerInfos = [];
     $scope.locationIsSet = false;
+
 
     function attachPlayerInfo(map, marker, content) {
 
@@ -39,7 +40,60 @@ angular.module('SmashApp.Map.controllers', [])
                 infoWindow.open(map, marker);
             });
         })(marker, content);
-    }
+    };
+
+    function findPlayers(lat, lng, radius){
+
+        // find players function
+        var listParams = {
+            latitude: lat,
+            longitude: lng,
+            radius: 0.01449275362 * radius // search radius in miles
+        };
+
+        // server call to get ocal list
+        UserServ.localList(listParams).success(function(res) {
+            // success
+            console.log('Success Local List', res);
+
+            // remove previous markers from map and clear them in memory
+            for (var i = 0; i < $scope.playerMarkers.length; i++) {
+                $scope.playerMarkers[i].setMap(null);
+            }
+            $scope.playerMarkers = [];
+
+            // set the player list from the response
+            var playerList = res;
+
+            // for each player in the list, add a marker for them
+            for (var i = 0; i < playerList.length; i++) {
+
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: playerList[i].location[1],
+                        lng: playerList[i].location[0]
+                    },
+                    map: $scope.map,
+                    icon: 'img/active-player-red.png'
+                });
+
+                var infoWindowContent = '<div id="map-player-info-content">' +
+                    '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
+                    '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
+                    '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
+                    '</div>';
+
+                attachPlayerInfo($scope.map, marker, infoWindowContent);
+
+                $scope.playerMarkers.push(marker);
+            }
+
+
+        }).error(function(res) {
+            console.log('Error', res);
+        });
+
+    };
 
     $scope.isActive = function() {
         if ($rootScope.user.active) {
@@ -158,16 +212,20 @@ angular.module('SmashApp.Map.controllers', [])
 
         var mapOptions = {
             streetViewControl: true,
-            zoom: 14,
             center: $scope.startPos,
+            zoom: 14,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
         var map = new google.maps.Map(document.getElementById('map'),
             mapOptions);
 
+        // find current users
+        findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 5);
+
 
         console.log('User', $rootScope.user);
-        // add user location to map if it is set
+        // add user location toap if it is set
         if ($rootScope.user.location) {
         	// update bottom location bar to display correct info
         	$scope.locationIsSet = true;
@@ -253,7 +311,7 @@ angular.module('SmashApp.Map.controllers', [])
                             var listParams = {
                                 latitude: $scope.ctrlMarker.getPosition().lat(),
                                 longitude: $scope.ctrlMarker.getPosition().lng(),
-                                radius: 2000 // 2 km search radius
+                                radius: 0.01449275362 * 1 // 2 mile search radius
                             };
 
                             // server call to get ocal list
