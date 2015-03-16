@@ -221,7 +221,7 @@ angular.module('SmashApp.Map.controllers', [])
             mapOptions);
 
         // find current users
-        findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 5);
+        findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 50);
 
 
         console.log('User', $rootScope.user);
@@ -311,7 +311,7 @@ angular.module('SmashApp.Map.controllers', [])
                             var listParams = {
                                 latitude: $scope.ctrlMarker.getPosition().lat(),
                                 longitude: $scope.ctrlMarker.getPosition().lng(),
-                                radius: 0.01449275362 * 1 // 2 mile search radius
+                                radius: 0.01449275362 * 50 // 2 mile search radius
                             };
 
                             // server call to get ocal list
