@@ -166,7 +166,8 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
         request: function(config) {
           if (config.url.split('/')[0] === 'api'){
             //TODO: change to server url when not local.
-            config.url = 'http://localhost:3000/' + config.url.replace('api/', '');
+            //config.url = 'http://localhost:3000/' + config.url.replace('api/', '');
+            config.url = 'http://smashserver.cloudapp.net:3000/' + config.url.replace('api/', '');
           }
           return config || $q.when(config);
         }
