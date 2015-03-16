@@ -1,6 +1,7 @@
 angular.module('SmashApp.Map.controllers', [])
 
 .controller('MapCtrl', ['$scope', '$rootScope', '$state', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
+
     $scope.greeting = 'hey';
     $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
@@ -8,7 +9,10 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.playerInfos = [];
     $scope.locationIsSet = false;
 
-
+    if($scope.map){
+        google.maps.event.trigger(map, 'resize');    
+    }
+    
     function attachPlayerInfo(map, marker, content) {
 
         //var infoWindow = new google.maps.InfoWindow();
