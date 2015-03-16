@@ -41,7 +41,7 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider, $httpProvider) {
   $stateProvider
 
   .state('app', {
@@ -95,7 +95,17 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
     url: "/messages/m2k",
     views: {
       'menuContent': {
-        templateUrl: 'messages/view.example.m2k.html'      
+        templateUrl: 'messages/view.example.m2k.html'         
+      }
+    }
+  })
+
+  .state('app.chat', {
+    url: '/chat/:chatID',
+    views: {
+      'menuContent': {
+        templateUrl: 'messages/view.example.hbox.html',
+        controller: 'MessagesCtrl'
       }
     }
   })
@@ -148,7 +158,20 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
       }
     }
   });
+
   $sceDelegateProvider.resourceUrlWhitelist(['self', 'https://s3.amazonaws.com/amrap/**', 'http://localhost:3000/**']);
+
+  $httpProvider.interceptors.push(function ($q) {
+      return {
+        request: function(config) {
+          if (config.url.split('/')[0] === 'api'){
+            //TODO: change to server url when not local.
+            config.url = 'http://localhost:3000/' + config.url.replace('api/', '');
+          }
+          return config || $q.when(config);
+        }
+      };
+    });
 
 
 

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('SmashApp.Core.services',[]).value('SMASH_SERVER_API_URL','http://smashserver.cloudapp.net:3000')
+angular.module('SmashApp.Core.services',[])
 
-	.factory('RegAuthServ', ['$http', 'SMASH_SERVER_API_URL', function($http, SMASH_SERVER_API_URL){
+	.factory('RegAuthServ', ['$http', function($http){
 
 		/*
 		Note: The server treats guestBook posts as articles
@@ -11,23 +11,23 @@ angular.module('SmashApp.Core.services',[]).value('SMASH_SERVER_API_URL','http:/
 		return {
 			register: function(userObject) {
 				console.log('RegAuthServ.register()', userObject);
-				return $http.post(SMASH_SERVER_API_URL + '/auth/signup', userObject, {
+				return $http.post('api/auth/signup', userObject, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
 				});
-			},
+			},			
 			login: function(loginData) {
 				console.log('RegAuthServ.login()', loginData);
-				return $http.post(SMASH_SERVER_API_URL + '/auth/signin', loginData, {
+				return $http.post('api/auth/signin', loginData, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
 				});
-			},
+			},			
 			logout: function(logoutData) {
 				console.log('RegAuthServ.logout()', logoutData);
-				return $http.post(SMASH_SERVER_API_URL + '/auth/signout', logoutData, {
+				return $http.post('api/auth/signout', logoutData, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
@@ -39,7 +39,7 @@ angular.module('SmashApp.Core.services',[]).value('SMASH_SERVER_API_URL','http:/
 	.factory('Socket', ['socketFactory', function(socketFactory) {		
 		return socketFactory({
 			prefix: '',
-			//ioSocket: io.connect('http://localhost:3000')
+			ioSocket: io.connect('http://localhost:3000')
 		});
 	}])
 
