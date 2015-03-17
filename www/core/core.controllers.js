@@ -1,9 +1,31 @@
 angular.module('SmashApp.Core.controllers', [])
 
-  .controller('AppCtrl', ['$scope', '$rootScope', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$localstorage', 'RegAuthServ', 'Socket', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $ionicModal, $localstorage, RegAuthServ, Socket) {
+  .controller('AppCtrl', ['$scope', '$rootScope', '$cordovaGeolocation', '$state', '$ionicSideMenuDelegate', '$ionicModal', '$ionicPopup', '$localstorage', 'RegAuthServ', 'Socket', function($scope, $rootScope, $cordovaGeolocation, $state, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $localstorage, RegAuthServ, Socket) {
     $scope.greeting = 'hey';
     $rootScope.user = $localstorage.getObject('user');
     $rootScope.allowSideMenu = true; // allow by default
+
+    function onGeoSuccess(position){
+      var lat  = position.coords.latitude;
+      var lng = position.coords.longitude;
+
+      console.log('PhonePos-on-load', position);
+      $rootScope.phonePos = new google.maps.LatLng(lat, lng); // default map location
+
+    };
+
+    function onGeoError(err){
+
+      console.log('GPS position grabbing error. Trying again..', err);
+      
+      $cordovaGeolocation.getCurrentPosition().then(onGeoSuccess, function(err){
+        console.log('Could not find GPS coordinates', err);
+      });
+      
+    };
+
+    // find location of phone to center map there
+    $cordovaGeolocation.getCurrentPosition().then(onGeoSuccess, onGeoError);    
 
     // this will hide the tabs when the side menu is open
     $scope.$watch(function () {

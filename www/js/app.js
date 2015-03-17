@@ -14,7 +14,7 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
   'SmashApp.Login.controllers',
   'btford.socket-io'])
 
-.run(function($ionicPlatform, $cordovaGeolocation, $rootScope) {
+.run(function($ionicPlatform, $cordovaGeolocation, $rootScope, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -25,20 +25,8 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    // find location of phone to center map there
-    var posOptions = {timeout: 10000, enableHighAccuracty: true};
-    $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-        var lat  = position.coords.latitude;
-        var lng = position.coords.longitude;
-
-        console.log('PhonePos-on-load', position);
-        $rootScope.phonePos = new google.maps.LatLng(lat, lng); // default map location
-
-      }, function(err) {
-        console.log('Error updating phone pos, using last known pos');
-      });
-  });
+    
+  });  
 })
 
 .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider, $httpProvider) {

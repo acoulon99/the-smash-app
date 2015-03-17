@@ -1,14 +1,15 @@
 angular.module('SmashApp.Map.controllers', [])
 
 .controller('MapCtrl', ['$scope', 
-	'$rootScope', 
+	'$rootScope',      
 	'$state', 
 	'$ionicLoading', 
 	'$cordovaGeolocation', 
 	'$ionicPopup', 
 	'$localstorage', 
+    '$interval',
 	'UserServ', 
-	function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
+	function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, $interval, UserServ) {
 
     $scope.greeting = 'hey';
     $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
@@ -17,15 +18,9 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.playerInfos = [];
     $scope.locationIsSet = false;
 
-    if ($scope.map) {
-        google.maps.event.trigger(map, 'resize');
-    }
-
     function attachPlayerInfo(map, marker, content) {
 
         //var infoWindow = new google.maps.InfoWindow();
-
-
 
         // Attaching a click event to the current marker
         google.maps.event.addListener(marker, 'click', function(event) {
@@ -85,6 +80,11 @@ angular.module('SmashApp.Map.controllers', [])
             // for each player in the list, add a marker for them
             for (var i = 0; i < playerList.length; i++) {
 
+                // do not create marker for current user
+                if(playerList[i].username == $rootScope.user.username){
+                    continue;
+                }
+
                 var marker = new google.maps.Marker({
                     position: {
                         lat: playerList[i].location[1],
@@ -109,6 +109,8 @@ angular.module('SmashApp.Map.controllers', [])
             console.log('Error', res);
         });
     }
+
+
 
     $scope.isActive = function() {
         if ($rootScope.user.active) {
@@ -139,6 +141,8 @@ angular.module('SmashApp.Map.controllers', [])
             console.log('playerListLocal', playerList);
 
             for (var i = 0; i < playerList.length; i++) {
+
+
                 var marker = new google.maps.Marker({
                     position: {
                         lat: playerList[i].location[1],
@@ -236,7 +240,7 @@ angular.module('SmashApp.Map.controllers', [])
             mapOptions);
 
         // find current users
-        findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 50);
+        // findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 50);
 
 
         console.log('User', $rootScope.user);
@@ -306,6 +310,13 @@ angular.module('SmashApp.Map.controllers', [])
                                 // clear error message
                                 $scope.errorMessage = undefined;
 
+                                $scope.myMarker.setMap(null);
+                                $scope.myMarker = new google.maps.Marker({
+                                    position: new google.maps.LatLng($rootScope.user.location[1], $rootScope.user.location[0]),
+                                    map: map,
+                                    icon: 'img/active-player-blue.png'
+                                });
+
                                 // TODO DISPLAY UPDATE SUCCESSFUL MESSAGE
 
                                 // error handler
@@ -320,60 +331,7 @@ angular.module('SmashApp.Map.controllers', [])
                         }
                     }, {
                         text: 'Find Players',
-                        onTap: function(event) {
-
-                            // find players function
-                            var listParams = {
-                                latitude: $scope.ctrlMarker.getPosition().lat(),
-                                longitude: $scope.ctrlMarker.getPosition().lng(),
-                                radius: 0.01449275362 * 50 // 2 mile search radius
-                            };
-
-                            // server call to get ocal list
-                            UserServ.localList(listParams).success(function(res) {
-                                // success
-                                console.log('Success Local List', res);
-
-                                // remove previous markers from map and clear them in memory
-                                for (var i = 0; i < $scope.playerMarkers.length; i++) {
-                                    $scope.playerMarkers[i].setMap(null);
-                                }
-                                $scope.playerMarkers = [];
-
-                                // set the player list from the response
-                                var playerList = res;
-
-
-
-                                // for each player in the list, add a marker for them
-                                for (var i = 0; i < playerList.length; i++) {
-
-                                    var marker = new google.maps.Marker({
-                                        position: {
-                                            lat: playerList[i].location[1],
-                                            lng: playerList[i].location[0]
-                                        },
-                                        map: $scope.map,
-                                        icon: 'img/active-player-red.png'
-                                    });
-
-                                    var infoWindowContent = '<div id="map-player-info-content">' +
-                                        '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
-                                        '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
-                                        '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
-                                        '</div>';
-
-                                    attachPlayerInfo($scope.map, marker, infoWindowContent);
-
-                                    $scope.playerMarkers.push(marker);
-                                }
-
-
-                            }).error(function(res) {
-                                console.log('Error', res);
-                            });
-
-                        }
+                        onTap: findPlayers($scope.ctrlMarker.getPosition().lat(), $scope.ctrlMarker.getPosition().lng(), 50)
                     }]
                 });
 
@@ -381,6 +339,22 @@ angular.module('SmashApp.Map.controllers', [])
 
         });
         $scope.map = map;
+
+        // search for local players every 15 seconds
+        $interval(findPlayers($scope.map.getCenter().lat(), $scope.map.getCenter().lng(), 50), 15000);
+
+        if($rootScope.user.location){
+            console.log('should have made marker');
+            $scope.myMarker = new google.maps.Marker({
+                position: new google.maps.LatLng($rootScope.user.location[1], $rootScope.user.location[0]),
+                map: map,
+                icon: 'img/active-player-blue.png'
+            });
+        } else {
+            console.log('did nothing!!! mauuahaha');
+        }
+
+
     };
 
     $scope.goToHboxChat = function() {
@@ -388,4 +362,7 @@ angular.module('SmashApp.Map.controllers', [])
         $state.go('app.hboxChat');
     }
 
+    // search for local players every 15 seconds
+    // 
+    
 }]);
