@@ -1,4 +1,4 @@
-angular.module('SmashApp.User.services',[]).value('SMASH_SERVER_API_URL','http://smashserver.cloudapp.net:3000')
+angular.module('SmashApp.User.services',[])
 
 	.factory('UserServ', ['$http', 'SMASH_SERVER_API_URL', function($http, SMASH_SERVER_API_URL){
 
@@ -9,7 +9,7 @@ angular.module('SmashApp.User.services',[]).value('SMASH_SERVER_API_URL','http:/
 		return {
 			update: function(userObject) {
 				console.log('UserServ.update()', userObject);
-				return $http.put(SMASH_SERVER_API_URL + '/users', userObject, {
+				return $http.put('api/users', userObject, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
@@ -17,7 +17,7 @@ angular.module('SmashApp.User.services',[]).value('SMASH_SERVER_API_URL','http:/
 			},
 			me: function(loginToken){
 				console.log('UserServ.me()', {loginToken: loginToken});
-				return $http.post(SMASH_SERVER_API_URL + '/users/me', {loginToken: loginToken}, {
+				return $http.post('api/users/me', {loginToken: loginToken}, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
@@ -25,7 +25,7 @@ angular.module('SmashApp.User.services',[]).value('SMASH_SERVER_API_URL','http:/
 			},
 			localList: function(listParams) {
 				console.log('UserServe.localList()', listParams);
-				return $http.post(SMASH_SERVER_API_URL + '/users/local', listParams, {
+				return $http.post('api/users/local', listParams, {
 					headers: {
 						'Content-Type' : 'application/json'
 					}
