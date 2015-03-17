@@ -1,6 +1,6 @@
 angular.module('SmashApp.User.services',[])
 
-	.factory('UserServ', ['$http', 'SMASH_SERVER_API_URL', function($http, SMASH_SERVER_API_URL){
+	.factory('UserServ', ['$http', function($http){
 
 		/*
 		Note: The server treats guestBook posts as articles

@@ -1,6 +1,14 @@
 angular.module('SmashApp.Map.controllers', [])
 
-.controller('MapCtrl', ['$scope', '$rootScope', '$state', '$ionicLoading', '$cordovaGeolocation', '$ionicPopup', '$localstorage', 'UserServ', function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
+.controller('MapCtrl', ['$scope', 
+	'$rootScope', 
+	'$state', 
+	'$ionicLoading', 
+	'$cordovaGeolocation', 
+	'$ionicPopup', 
+	'$localstorage', 
+	'UserServ', 
+	function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, UserServ) {
 
     $scope.greeting = 'hey';
     $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
@@ -9,10 +17,10 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.playerInfos = [];
     $scope.locationIsSet = false;
 
-    if($scope.map){
-        google.maps.event.trigger(map, 'resize');    
+    if ($scope.map) {
+        google.maps.event.trigger(map, 'resize');
     }
-    
+
     function attachPlayerInfo(map, marker, content) {
 
         //var infoWindow = new google.maps.InfoWindow();
@@ -28,9 +36,14 @@ angular.module('SmashApp.Map.controllers', [])
                 title: 'Player Card',
                 scope: $scope,
                 template: content,
-                buttons: [{text:'Message', onTap: function(){
-                    $state.go('app.hboxChat');
-                }},{text:'Close'}]
+                buttons: [{
+                    text: 'Message',
+                    onTap: function() {
+                        $state.go('app.hboxChat');
+                    }
+                }, {
+                    text: 'Close'
+                }]
             });
 
         });
@@ -44,9 +57,9 @@ angular.module('SmashApp.Map.controllers', [])
                 infoWindow.open(map, marker);
             });
         })(marker, content);
-    };
+    }
 
-    function findPlayers(lat, lng, radius){
+    function findPlayers(lat, lng, radius) {
 
         // find players function
         var listParams = {
@@ -92,12 +105,10 @@ angular.module('SmashApp.Map.controllers', [])
                 $scope.playerMarkers.push(marker);
             }
 
-
         }).error(function(res) {
             console.log('Error', res);
         });
-
-    };
+    }
 
     $scope.isActive = function() {
         if ($rootScope.user.active) {
@@ -231,8 +242,8 @@ angular.module('SmashApp.Map.controllers', [])
         console.log('User', $rootScope.user);
         // add user location toap if it is set
         if ($rootScope.user.location) {
-        	// update bottom location bar to display correct info
-        	$scope.locationIsSet = true;
+            // update bottom location bar to display correct info
+            $scope.locationIsSet = true;
 
             console.log('adding user position to the map');
 
@@ -372,7 +383,7 @@ angular.module('SmashApp.Map.controllers', [])
         $scope.map = map;
     };
 
-    $scope.goToHboxChat = function(){
+    $scope.goToHboxChat = function() {
         console.log('click msg button');
         $state.go('app.hboxChat');
     }

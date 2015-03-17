@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('SmashApp.Core.services',[])
 
 	.factory('RegAuthServ', ['$http', function($http){
