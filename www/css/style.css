@@ -12,6 +12,10 @@ p{
 	color: white;
 }
 
+input[disabled]{
+	background-color: inherit;
+}
+
 .dark-bar {
 	background-color: #121314;
 	border-color: #2e2f33;
@@ -190,28 +194,16 @@ p{
 #login-modal .forgot-container{
 	margin-top: 20px;
 	text-align: center;
+	font-weight: normal;
 }
 
 #login-modal .title{
 	color: white;
-}
-
-#login-modal i{
-	color: #88898c;
-}
-
-.login-form label{
-	background: #1c1c1f;
-	color: #88898c;
-	border-color: #2e2f33;
+	font-weight: bold;
 }
 
 .login-form i{
 	margin-right: 25px;
-}
-
-.login-form input{
-	color: #88898c;
 }
 
 .login-form button{
@@ -220,6 +212,12 @@ p{
 
 .popup {
 	color: black;
+}
+
+#loginLabel{
+	color: white;
+	background-color: #4A87EE;
+	text-align: center;
 }
 
 /*
@@ -233,24 +231,11 @@ p{
 
 #register-modal .title{
 	color: white;
-}
-
-#register-modal i{
-	color: #88898c;
-}
-
-.register-form label{
-	background: #1c1c1f;
-	color: #88898c;
-	border-color: #2e2f33;
+	font-weight: bold;
 }
 
 .register-form i{
 	margin-right: 25px;
-}
-
-.register-form input{
-	color: #88898c;
 }
 
 .register-form button{
@@ -259,6 +244,12 @@ p{
 
 .popup p, h1, h2, h3, h4, h5{
 	color: black;
+}
+
+#registerLabel {
+	color: white;
+	background-color: #4A87EE;
+	text-align: center;
 }
 
 /*
@@ -332,7 +323,42 @@ p{
 	border-color: #1A0387;
 }
 
+/*
+	PROFILE
+*/
 
+
+.dark-form label{
+	background: #1c1c1f;
+	border-color: #2e2f33;
+}
+
+.dark-form i, .dark-form input, .dark-form span, .dark-form label{
+	color: #88898c;
+}
+
+#profileHeader{
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	background-color: #2C2F33;
+}
+
+#profileEdit{
+	color: white;
+	background-color: #EF4E3A;
+	text-align: center; 
+}
+
+#profileUpdate{
+	color: white;
+	background-color: #4A87EE;
+	text-align: center; 
+}
+
+.whiteT{
+	color: white !important;
+}
 
 /*
 	COMING SOON

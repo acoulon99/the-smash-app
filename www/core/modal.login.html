@@ -6,19 +6,20 @@
         </div>
     </ion-header-bar>
     <ion-content class="login-content">
-        <form>
-            <div class="list login-form">
-                <label class="item item-input">
-                    <i class="icon ion-person"></i>
-                    <input type="text" ng-model="loginData.username" placeholder="Username">
-                </label>
-                <label class="item item-input">
-                    <i class="icon ion-locked"></i>
-                    <input type="password" ng-model="loginData.password" placeholder="Password">
-                </label>
-            </div>
-        </form>
-        <button class="button button-full button-positive" ng-click="login()">Log In</button>
+        <div class="list login-form dark-form">
+            <label class="item item-input">
+                <i class="icon ion-person"></i>
+                <input type="text" ng-model="loginData.username" placeholder="Username">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-locked"></i>
+                <input type="password" ng-model="loginData.password" placeholder="Password">
+            </label>
+            <label ng-click="login()" id="loginLabel" class="item">
+                Log In
+            </label>
+        </div>
+        
         <div class="forgot-container">
             <a ng-click="forgotComingSoon()">Forgot Password?</a>
         </div>

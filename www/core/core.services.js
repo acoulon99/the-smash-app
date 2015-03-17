@@ -57,5 +57,5 @@ angular.module('SmashApp.Core.services',[])
 			getObject: function(key) {
 				return JSON.parse($window.localStorage[key] || '{}');
 			}
-		}
+		};
 	}]);
