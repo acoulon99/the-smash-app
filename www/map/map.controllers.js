@@ -232,7 +232,7 @@ angular.module('SmashApp.Map.controllers', [])
         var mapOptions = {
             streetViewControl: true,
             center: $scope.startPos,
-            zoom: 14,
+            zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
