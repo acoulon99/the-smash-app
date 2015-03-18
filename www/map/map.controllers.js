@@ -149,37 +149,7 @@ angular.module('SmashApp.Map.controllers', [])
     };
 
     $scope.findLocalPlayers = function() {
-
-        var listParams = {
-            latitude: 33,
-            longitude: -84,
-            radius: 2000
-        };
-
-        UserServ.localList(listParams).success(function(res) {
-            console.log('Success Local List', res);
-
-            var playerList = res;
-            console.log('playerListLocal', playerList);
-
-            for (var i = 0; i < playerList.length; i++) {
-
-
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat: playerList[i].location[1],
-                        lng: playerList[i].location[0]
-                    },
-                    map: $scope.map
-                });
-
-                $scope.playerMarkers.push(marker);
-            }
-
-
-        }).error(function(res) {
-            console.log('Error', res);
-        });
+        findPlayers($scope.map.getCenter().lat(), $scope.map.getCenter().lng(), 50);
     };
 
     $scope.clearMyLoc = function() {
@@ -346,10 +316,7 @@ angular.module('SmashApp.Map.controllers', [])
                                 console.log('Error Login', res);
                             });
                         }
-                    }, {
-                        text: 'Find Players',
-                        onTap: findPlayers($scope.ctrlMarker.getPosition().lat(), $scope.ctrlMarker.getPosition().lng(), 50)
-                    }]
+                    }, {text: 'Close'}]
                 });
 
             });
