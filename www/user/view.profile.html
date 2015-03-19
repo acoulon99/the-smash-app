@@ -7,17 +7,16 @@
     <ion-content class="black-background">
 		<div class="list dark-form">
 		    <label id="profileHeader" class="item item-label">
-		        {{user.username}}
-		    </label>
-
-		    <label ng-if="!isSocialLogin('facebook') && !user.profilePic" class="item item-thumbnail-left item-button-right">
-		    	<img class="profile-pic" ng-src="img/smash-app-icon.png">
-		    	<button class="button button-positive button-pic" ng-click="socialLogin('facebook')">Facebook sync</button>
-		    </label>
-
-		    <label ng-if="isSocialLogin('facebook') && !user.profilePic" class="item item-thumbnail-left item-button-right">
-		    	<img class="profile-pic" ng-src="img/smash-app-icon.png">
-		    	<button class="button button-positive button-pic" ng-click="setProfilePic()">Set Profile Pic</button>
+		    	<div class="row">
+		    		<div class="col col-center">
+		    			<span class="profile-name float-left">
+		    				{{user.username}}
+		    			</span> 
+		    		</div>
+		    		<div class="col">
+		    			<img class="float-right" ng-src="img/smash-app-icon.png">
+		    		</div>
+		    	</div>
 		    </label>
 
 		    <label ng-if="user.profilePic" class="item item-thumbnail-left item-button-right">
@@ -53,6 +52,22 @@
 		        </span>
 		        <input ng-disabled="!editMode" ng-class="{whiteT: editMode}" type="text" ng-model="updateData.games">
 		    </label>
+
+		    <!-- FB Integration -->
+		    <label ng-if="!isSocialLogin('facebook') && !user.profilePic" class="item item-button-right">
+    	        <span>
+    				<i class="icon ion-camera"></i>
+    		        Social Media
+    	        </span>
+		    	<button ng-disabled="!editMode" class="button FB-blue" ng-click="socialLogin('facebook')">
+		    		<span ng-class="{whiteT: editMode}">Link with </span><img src="img/FBLogoSmall.png">
+		    	</button>
+		    </label>
+		    <!-- <label ng-if="isSocialLogin('facebook') && !user.profilePic" class="item item-thumbnail-left item-button-right">
+		    	<img class="profile-pic" ng-src="img/smash-app-icon.png">
+		    	<button class="button button-positive button-pic" ng-click="setProfilePic()">Set Profile Pic</button>
+		    </label> -->
+
 		    <label id="profileEdit" class="item" ng-show="!editMode" ng-click="editMode = !editMode">
 		    	Edit Info
 		    </label>

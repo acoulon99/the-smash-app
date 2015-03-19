@@ -57,6 +57,7 @@ input[disabled]{
 	color: #DD0000;
 }
 
+
 /*
 	HEADER
 */
@@ -372,6 +373,15 @@ input[disabled]{
 	background-color: #2C2F33;
 }
 
+#profileHeader .row, #profileHeader .col{
+	padding: 0px !important;
+}
+
+#profileHeader img{
+	height: 75px;
+	width: 75px;
+}
+
 #profileEdit{
 	color: white;
 	background-color: #EF4E3A;
@@ -384,12 +394,27 @@ input[disabled]{
 	text-align: center; 
 }
 
-#profile .button-pic{
-	top: 30px;	
+.profile-name{
+	color: white !important;
+	font-weight: bold;
+	font-size: 30px;
 }
 
 .whiteT{
 	color: white !important;
+}
+
+.FB-blue{
+	background-color: #3B579D;
+	border: 0px solid !important;
+}
+
+#profile .button:hover{
+	color: white !important;
+}
+
+.FB-blue img{
+	margin-bottom: 5px;
 }
 
 /*
