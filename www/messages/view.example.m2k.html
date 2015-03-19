@@ -1,25 +1,27 @@
-<ion-view id="chat-example" view-title="Chat">
-
-    <ion-content class="dark-background">
-		<div class="row">
-			<div class="col">
-				<div class="list">
-				    <div class="item item-avatar-left">
-				        <img src="img/m2k-profile.jpg">
-				        <h2>M2King - Mar 12, 2015 5:02am</h2>
-				        <p>Just got here. Are you here?</p>
-				    </div>
-				    <div class="item item-avatar-left">
-				        <img src="img/m2k-profile.jpg">
-				        <h2>M2King - Mar 12, 2015 5:10am</h2>
-				        <p>Hey! I wanted to play! Where did you go?</p>
-				    </div>
-				</div>
-			</div>
-		</div>
-		<div class="row item item-button-right message-bar">
-			<input type="text" placeholder="Message"></input>
-			<button class="button button-positive button-send">Send</button>
-		</div>
+<ion-view id="chat-example" view-title="Chat - M2King">
+	<ion-nav-back-button class="button-clear">
+	    <i class="ion-arrow-left-b"></i> Messages
+	</ion-nav-back-button>
+    <ion-content class="black-background">
+	        <div class="list">
+	            <div class="item item-avatar-left item-text-wrap">
+	                <img class="chat-avatar" src="img/m2k-profile.jpg">
+	                <p>Just got here. Are you here?</p>
+	                <h5>Mar 12, 2015 5:02am</h5>
+	            </div>
+	            <div class="item item-avatar-left item-text-wrap">
+	                <img class="chat-avatar" src="img/m2k-profile.jpg">
+	                <p>Hey! I wanted to play! Where did you go?  I was just sitting here waiting for you to come, but alas, I just decided to take on 3 level 9 computers instead.</p>
+	                <h5>Mar 12, 2015 5:10am</h5>
+	            </div>
+	        </div>
     </ion-content>
+    <ion-footer-bar class="no-fluff">
+        <div class="list no-fluff">
+        	<div id="chat-message-bar" class="item item-input">
+			    <input type="text" placeholder="Type message"></input>
+			    <button id="chat-send-button" class="button button-positive">Send</button>
+        	</div>
+        </div>
+    </ion-footer-bar>
 </ion-view>
