@@ -337,6 +337,11 @@ input[disabled]{
 	font-weight: normal;
 }
 
+#map-player-info-content .player-pic{
+	height: 100px;
+	width: 100px;
+}
+
 #map-player-info-content .button-message{
 	min-height: 0;
 	height: 25px;

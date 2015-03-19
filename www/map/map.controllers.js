@@ -101,6 +101,7 @@ angular.module('SmashApp.Map.controllers', [])
                     });
 
                     var infoWindowContent = '<div id="map-player-info-content">' +
+                        '<img class="player-pic" ng-src="' + (playerList[i].playerPic || 'img/smash-app-icon-2.png') + '">' +
                         '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
                         '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
                         '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
@@ -122,6 +123,7 @@ angular.module('SmashApp.Map.controllers', [])
                     });
 
                     var infoWindowContent = '<div id="map-player-info-content">' +
+                        '<img class="player-pic" ng-src="' + (playerList[i].playerPic || 'img/smash-app-icon-2.png') + '">' +
                         '<p><span class="text-bold">Player:</span> ' + playerList[i].tag + '</p>' +
                         '<p><span class="text-bold">Game(s):</span> ' + playerList[i].games + '</p>' +
                         '<p><span class="text-bold">Main(s):</span> ' + playerList[i].mains + '</p>' +
