@@ -1,9 +1,7 @@
-<ion-view id="messages" title="Messages">
+<ion-view id="chat" title="Chat">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-
-
 
   <ion-nav-buttons side="right">
     <button class="button-clear proceed-button"><i class="ion-compose"></i></button>
@@ -15,10 +13,10 @@
       <a ng-repeat="message in messages track by $index" href="#/app/chat/{{message.conversation_id}}">
         <div class="conversation" href="#/app/chat/{{message.conversation_id}}">
           <img class="profile-pic" ng-src="{{messages[$index].senderProfileImage}}">
-          <div class="middle">
-            <div class="no-wrap"><p class="name">{{messages[$index].senderId | HtmlSafeSpaces}}</p></div>
-            <p class="time">{{messages[$index].sentDate}}/p>
-            <p class="recent">&quot;{{messages[$index].body}}&quot;</p>
+          <div class="messages-chatInfo">
+            <div><p class="messages-name">{{messages[$index].senderId | HtmlSafeSpaces}}</p></div>
+            <p class="messages-time">{{messages[$index].sentDate}}/p>
+            <p class="messages-recent">&quot;{{messages[$index].body}}&quot;</p>
           </div>
         </div>
       </a>
