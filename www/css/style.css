@@ -319,6 +319,15 @@ input[disabled]{
 	height: 100%;
 }
 
+#map-screen .refresh-button{
+	position: absolute;
+	bottom: 65px;
+	right: 10px;
+	height: 40px;
+	min-height: 40px;
+	line-height: 40px;
+}
+
 #map-player-info-content{
 	text-align: center;
 }
@@ -336,6 +345,8 @@ input[disabled]{
 	background: #301FE1;
 	border-color: #1A0387;
 }
+
+
 
 /*
 	PROFILE
