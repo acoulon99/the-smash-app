@@ -31,5 +31,37 @@ angular.module('SmashApp.User.controllers', [])
                 console.log('Error Login', res);
             });
         };
+
+        $scope.isSocialLogin = function(network) {
+            return UserServ.isSocialLogin(network);
+        };
+
+        $scope.socialLogin = function(network){
+            UserServ.socialLogin(network, function(err){
+                if(err){
+                    // handle error
+                    console.log(err);
+                } else {
+                    // handle success
+                    $scope.$apply();
+                }
+            });
+        };
+
+        $scope.setProfilePic = function(){
+            UserServ.getSocialProfile('facebook', function(err, userProfile){
+                if(err){
+                    console.log(err);
+                    $scope.$apply();
+                } else {
+                    $rootScope.user.profilePic = userProfile.picture;
+                    $scope.$apply();
+                }
+            })
+        };
+
+        $scope.removeProfilePic = function(){
+            $rootScope.user.profilePic = null;
+        };
     }
 ]);

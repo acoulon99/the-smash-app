@@ -2,10 +2,13 @@ angular.module('SmashApp.User.services',[])
 
 	.factory('UserServ', ['$http', function($http){
 
-		/*
-		Note: The server treats guestBook posts as articles
-		TODO: refactor article(server-side) to say guestBookPost or something similar
-		*/
+		hello.init({
+	      facebook : '633943593405254'
+	    }, {
+	      // Define the OAuth2 return URL
+	      redirect_uri : 'http://adodson.com/hello.js/redirect.html'
+	    });
+
 		return {
 			update: function(userObject) {
 				console.log('UserServ.update()', userObject);
@@ -30,6 +33,33 @@ angular.module('SmashApp.User.services',[])
 						'Content-Type' : 'application/json'
 					}
 				});
+			},
+
+
+			// HELLO.JS SOCIAL CALLBACK METHODS
+			socialLogin: function(network, callback){
+				hello(network).login(function(){
+					console.log('Successful login to ' + network);
+					callback(null);
+				}, function(err){
+					console.log('Social Media Error', err);
+					callback(err);
+				});
+			},
+			isSocialLogin: function(network) {
+				var session = hello(network).getAuthResponse();
+				var current_time = (new Date()).getTime() / 1000;
+
+				return session && session.access_token && session.expires > current_time;
+			},
+			getSocialProfile: function(network, callback){
+				hello(network).api('/me').then(function(userObject){
+					callback(null, userObject);
+				}, function(err){
+					console.log('Social Media Error', err);
+					callback(err);
+				});
 			}
+
 		};
 	}]);

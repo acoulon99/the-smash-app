@@ -367,6 +367,10 @@ input[disabled]{
 	text-align: center; 
 }
 
+#profile .button-pic{
+	top: 30px;	
+}
+
 .whiteT{
 	color: white !important;
 }

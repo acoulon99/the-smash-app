@@ -9,6 +9,22 @@
 		    <label id="profileHeader" class="item item-label">
 		        {{user.username}}
 		    </label>
+
+		    <label ng-if="!isSocialLogin('facebook') && !user.profilePic" class="item item-thumbnail-left item-button-right">
+		    	<img class="profile-pic" ng-src="img/smash-app-icon.png">
+		    	<button class="button button-positive button-pic" ng-click="socialLogin('facebook')">Facebook sync</button>
+		    </label>
+
+		    <label ng-if="isSocialLogin('facebook') && !user.profilePic" class="item item-thumbnail-left item-button-right">
+		    	<img class="profile-pic" ng-src="img/smash-app-icon.png">
+		    	<button class="button button-positive button-pic" ng-click="setProfilePic()">Set Profile Pic</button>
+		    </label>
+
+		    <label ng-if="user.profilePic" class="item item-thumbnail-left item-button-right">
+		    	<img class="profile-pic" ng-src="{{user.profilePic}}">
+		    	<button class="button button-positive button-pic" ng-click="removeProfilePic()">Remove</button>
+		    </label>
+
 		    <label class="item item-input">
 		        <span  class="input-label">
 					<i class="icon ion-at"></i>

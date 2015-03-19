@@ -9,7 +9,15 @@ angular.module('SmashApp.Map.controllers', [])
 	'$localstorage', 
     '$interval',
 	'UserServ', 
-	function($scope, $rootScope, $state, $ionicLoading, $cordovaGeolocation, $ionicPopup, $localstorage, $interval, UserServ) {
+	function($scope, 
+        $rootScope, 
+        $state, 
+        $ionicLoading, 
+        $cordovaGeolocation, 
+        $ionicPopup, 
+        $localstorage, 
+        $interval, 
+        UserServ) {
 
     $scope.greeting = 'hey';
     $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
