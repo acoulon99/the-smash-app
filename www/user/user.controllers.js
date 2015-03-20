@@ -3,8 +3,9 @@ angular.module('SmashApp.User.controllers', [])
 .controller('ProfileCtrl', ['$scope',
     '$rootScope',
     '$localstorage',
+    '$ionicPopup',
     'UserServ',
-    function($scope, $rootScope, $localstorage, UserServ) {
+    function($scope, $rootScope, $localstorage, $ionicPopup, UserServ) {
         $scope.greeting = 'hey';
         $scope.updateData = $rootScope.user;
         $scope.editMode = false;
@@ -51,17 +52,59 @@ angular.module('SmashApp.User.controllers', [])
         $scope.setProfilePic = function(){
             UserServ.getSocialProfile('facebook', function(err, userProfile){
                 if(err){
-                    console.log(err);
-                    $scope.$apply();
+                    $ionicPopup.alert({
+                        title: 'No Johns',
+                        template: err
+                    });
                 } else {
-                    $rootScope.user.profilePic = userProfile.picture;
-                    $scope.$apply();
+
+                    console.log('Updating Profile pic on server', updateData);
+
+                    // update user on the server with profile pic
+                    var updateData = $rootScope.user;
+                    updateData.profilePic = userProfile.picture;
+                    UserServ.update(updateData).success(function(res) {
+                        console.log('Successful Update', res);
+
+                        // set user object in local storage
+                        $localstorage.setObject('user', res);
+                        $rootScope.user = res;
+                        $scope.$apply();
+
+                        // error handler
+                    }).error(function(res) {
+                        $ionicPopup.alert({
+                            title: 'No Johns',
+                            template: res
+                        });
+
+                    });
+
                 }
             })
         };
 
         $scope.removeProfilePic = function(){
-            $rootScope.user.profilePic = null;
+            console.log('Removing Profile pic on server');
+
+            // update user on the server with profile pic
+            var updateData = $rootScope.user;
+            updateData.profilePic = null;
+            UserServ.update(updateData).success(function(res) {
+                console.log('Successful Update', res);
+
+                // set user object in local storage
+                $localstorage.setObject('user', res);
+                $rootScope.user = res;
+                $scope.$apply();
+
+                // error handler
+            }).error(function(res) {
+                $ionicPopup.alert({
+                    title: 'No Johns',
+                    template: res
+                });
+            });
         };
     }
 ]);
