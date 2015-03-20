@@ -1,29 +1,46 @@
 <ion-view id="map-screen" view-title="Map" hide-back-button="true" ng-init="init()">
-
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
 
     <ion-content class="dark-background map-content">
-        <div class="row playerControls">
-            <div ng-if="!locationIsSet"class="col">
-                <p class="float-left no-wrap">
+        <div id="map" data-tap-disabled="true"></div>
+        <div class="refresh-button">
+            <button class="button button-positive" ng-click="findLocalPlayers()">
+                <i class="icon ion-refresh"></i>
+            </button>
+        </div>
+    </ion-content>
+
+    <ion-footer-bar class="no-fluff">
+        <div class="row playerControls no-fluff">
+            <div ng-if="!locationIsSet" class="col no-fluff">
+                <p class="center-text no-wrap">
                   Please set your location (Click map 2x)
                 </p>
             </div>
-            <div ng-if="locationIsSet" class="col">
-                <p class="float-left no-wrap">
-                    Loc:({{user.location[1]||'-' | limitTo: 5}}, {{user.location[0]||'-' | limitTo: 6}})          
-                </p>
-                <button class="button button-clear button-stable" ng-click="clearMyLoc()">Clear</button>
-                <button class="button button-positive float-right" ng-style="isActive()" ng-click="toggleActive()">
-                    Active: {{user.active}}
-                </button>
+            <div ng-if="locationIsSet" class="col no-fluff">
+                <div class="row no-fluff">
+                    <div id="map-loc-text" class="col col-70 no-fluff no-wrap">
+                        <!-- <span class="no-wrap">
+                            Loc:({{user.location[1]||'-' | limitTo: 5}}, {{user.location[0]||'-' | limitTo: 6}})
+                        </span> -->
+                        <button id="map-clear-btn" class="button button-clear button-stable" ng-click="clearMyLoc()">Clear Location</button>
+                    </div>
+                    <div id="active-toggle-container" class="col no-wrap no-fluff">
+                        <span id="map-active-text" class="no-fluff no-wrap">
+                            <span ng-if="!(isActive())">Not Active</span>
+                            <span ng-if="isActive()">Smash Time!</span>
+                        </span>
+                        <label id="map-active-toggle" class="toggle no-wrap" ng-click="toggleActive()">
+                            <input type="checkbox" ng-model="isActive()">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="map" data-tap-disabled="true"></div>
-        <div class="refresh-button">
-            <button class="button button-positive" ng-click="findLocalPlayers()">Refresh</button>
-        </div>
-    </ion-content>
+    </ion-footer-bar>
 </ion-view>

@@ -49,12 +49,16 @@ input[disabled]{
 }
 
 .no-fluff{
-	margin: 0px none !important;
+	margin: 0px !important;
 	padding: 0px !important;
 }
 
 .color-red{
 	color: #DD0000;
+}
+
+.center-text{
+	text-align: center;
 }
 
 /*
@@ -296,17 +300,40 @@ input[disabled]{
 	MAP
 */
 .playerControls {
-	position: fixed;
-	bottom: 0px;
 	background-color: #121314;
-	line-height: 30px;
-	height: 50px;
-	z-index: 2;
+	line-height: 44px;
 }
 
 .playerControls button{
-	min-height: 0px;
-	line-height: 30px;
+	height: 44px !important;
+	border-radius: 0px !important;
+	padding-top: 3px !important;
+}
+
+#map-clear-btn{
+	padding: 0px 8px;
+}
+
+/*#map-loc-text{
+	text-align: left;
+	margin-left: 10px !important;
+}*/
+
+#map-active-text{
+	position: absolute;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 44px;
+	right: 75px;
+}
+
+#map-active-toggle{
+	margin-top: 2px;
+	margin-right: 5px !important;
+}
+
+#active-toggle-container{
+	text-align: right;
 }
 
 #map-screen .map-content .scroll{
@@ -321,7 +348,7 @@ input[disabled]{
 
 #map-screen .refresh-button{
 	position: absolute;
-	bottom: 65px;
+	bottom: 15px;
 	right: 10px;
 	height: 40px;
 	min-height: 40px;
@@ -372,6 +399,15 @@ input[disabled]{
 	background-color: #2C2F33;
 }
 
+#profileHeader .row, #profileHeader .col{
+	padding: 0px !important;
+}
+
+#profileHeader img{
+	height: 75px;
+	width: 75px;
+}
+
 #profileEdit{
 	color: white;
 	background-color: #EF4E3A;
@@ -384,12 +420,31 @@ input[disabled]{
 	text-align: center; 
 }
 
-#profile .button-pic{
-	top: 30px;	
+.profile-name{
+	color: white !important;
+	font-weight: bold;
+	font-size: 30px;
 }
 
 .whiteT{
 	color: white !important;
+}
+
+.FB-blue{
+	background-color: #3B579D;
+	border: 0px solid !important;
+}
+
+#profile .button:hover{
+	color: white !important;
+}
+
+.FB-blue img{
+	margin-bottom: 5px;
+}
+
+.FB-blue span{
+	margin-top: 3px;
 }
 
 /*

@@ -49,16 +49,6 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
     }
   })
 
-  .state('app.home', {
-    url: "/home",
-    views: {
-      'menuContent': {
-        templateUrl: 'core/view.home.html',
-        controller: 'HomeCtrl'
-      }
-    }
-  })
-
   .state('app.profile', {
     url: "/profile",
     views: {
@@ -92,17 +82,8 @@ angular.module('SmashApp', ['ionic', 'ngCordova',
     url: '/chat/:chatID',
     views: {
       'menuContent': {
-        templateUrl: 'messages/view.example.hbox.html',
+        templateUrl: 'messages/view.example.m2k.html',
         controller: 'MessagesCtrl'
-      }
-    }
-  })
-
-  .state('app.hboxChat', {
-    url: "/messages/hbox",
-    views: {
-      'menuContent': {
-        templateUrl: 'messages/view.example.hbox.html'      
       }
     }
   })
