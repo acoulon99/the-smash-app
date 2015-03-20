@@ -27,9 +27,7 @@ angular.module('SmashApp.Map.controllers', [])
     $scope.locationIsSet = false;
 
     function attachPlayerInfo(map, marker, content) {
-
         //var infoWindow = new google.maps.InfoWindow();
-
         // Attaching a click event to the current marker
         google.maps.event.addListener(marker, 'click', function(event) {
             //infoWindow.setContent(content);
@@ -48,7 +46,6 @@ angular.module('SmashApp.Map.controllers', [])
                     text: 'Close'
                 }]
             });
-
         });
 
         // Creating a closure to retain the correct data 
@@ -87,7 +84,6 @@ angular.module('SmashApp.Map.controllers', [])
 
             // for each player in the list, add a marker for them
             for (var i = 0; i < playerList.length; i++) {
-
                 // do not create marker for current user
                 if(playerList[i].username == $rootScope.user.username){
 
@@ -108,11 +104,9 @@ angular.module('SmashApp.Map.controllers', [])
                         '</div>';
 
                     attachPlayerInfo($scope.map, marker, infoWindowContent);
-
                     $scope.playerMarkers.push(marker);
 
                 } else {
-
                     var marker = new google.maps.Marker({
                         position: {
                             lat: playerList[i].location[1],
@@ -130,13 +124,9 @@ angular.module('SmashApp.Map.controllers', [])
                         '</div>';
 
                     attachPlayerInfo($scope.map, marker, infoWindowContent);
-
                     $scope.playerMarkers.push(marker);
                 }
-
-
             }
-
         }).error(function(res) {
             console.log('Error', res);
         });
@@ -145,17 +135,7 @@ angular.module('SmashApp.Map.controllers', [])
 
 
     $scope.isActive = function() {
-        if ($rootScope.user.active) {
-            return {
-                "background": "#E80000",
-                "border": "black"
-            };
-        } else {
-            return {
-                "background": "#800000",
-                "border": "black"
-            };
-        }
+        return ($rootScope.user.active);
     };
 
     $scope.findLocalPlayers = function() {
@@ -163,7 +143,6 @@ angular.module('SmashApp.Map.controllers', [])
     };
 
     $scope.clearMyLoc = function() {
-
         var userUpdate = {
             location: null,
             loginToken: $rootScope.user.loginToken
@@ -187,12 +166,8 @@ angular.module('SmashApp.Map.controllers', [])
             findPlayers($scope.map.getCenter().lat(), $scope.map.getCenter().lng(), 50);
 
             // TODO DISPLAY UPDATE SUCCESSFUL MESSAGE
-
             // error handler
         }).error(function(res) {
-            //
-
-
             // set scope error message
             $scope.errorMessage = res;
             console.log('Error', res);
@@ -200,12 +175,10 @@ angular.module('SmashApp.Map.controllers', [])
     };
 
     $scope.toggleActive = function() {
-
         var userUpdate = {
             active: $rootScope.user.active ? false : true,
             loginToken: $rootScope.user.loginToken
         };
-
 
         console.log('Updating Active', userUpdate);
 
@@ -227,17 +200,14 @@ angular.module('SmashApp.Map.controllers', [])
             $scope.errorMessage = res;
             console.log('Error Login', res);
         });
-
-
     };
 
     $scope.init = function() {
-
         var mapOptions = {
-            streetViewControl: true,
             center: $scope.startPos,
             zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: false,
             disableDefaultUI: true
         };
 
@@ -246,7 +216,6 @@ angular.module('SmashApp.Map.controllers', [])
 
         // find current users
         // findPlayers($scope.startPos.lat(), $scope.startPos.lng(), 50);
-
 
         console.log('User', $rootScope.user);
         // add user location toap if it is set
@@ -319,9 +288,6 @@ angular.module('SmashApp.Map.controllers', [])
 
                                 // error handler
                             }).error(function(res) {
-                                //
-
-
                                 // set scope error message
                                 $scope.errorMessage = res;
                                 console.log('Error Login', res);
@@ -329,23 +295,19 @@ angular.module('SmashApp.Map.controllers', [])
                         }
                     }, {text: 'Close'}]
                 });
-
             });
-
         });
         $scope.map = map;
 
         // search for local players every minute seconds
         $interval(findPlayers($scope.map.getCenter().lat(), $scope.map.getCenter().lng(), 50), 1000 * 60 * 1);
-
     };
 
     $scope.goToHboxChat = function() {
         console.log('click msg button');
         $state.go('app.hboxChat');
-    }
+    };
 
     // search for local players every 15 seconds
     // 
-    
 }]);
