@@ -19,12 +19,12 @@ angular.module('SmashApp.Map.controllers', [])
         $interval, 
         UserServ) {
 
-    $scope.greeting = 'hey';
     $scope.startPos = $rootScope.phonePos || new google.maps.LatLng(33.791484, -84.407535);
     $scope.ctrlMarker = undefined;
     $scope.playerMarkers = [];
     $scope.playerInfos = [];
     $scope.locationIsSet = false;
+    $scope.activeStatus = $rootScope.user.active;
 
     function attachPlayerInfo(map, marker, content) {
         //var infoWindow = new google.maps.InfoWindow();
@@ -132,10 +132,8 @@ angular.module('SmashApp.Map.controllers', [])
         });
     }
 
-
-
     $scope.isActive = function() {
-        return ($rootScope.user.active);
+        return $rootScope.user.active;
     };
 
     $scope.findLocalPlayers = function() {
